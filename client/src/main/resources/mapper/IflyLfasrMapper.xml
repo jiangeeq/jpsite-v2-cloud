@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mty.jls.iflytek.dao.IflyLfasrDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mty.jls.iflytek.entity.IflyLfasr">
+        <result column="id" property="id" />
+        <result column="task_id" property="taskId" />
+        <result column="task_name" property="taskName" />
+        <result column="create_time" property="createTime" />
+        <result column="creator" property="creator" />
+        <result column="update_time" property="updateTime" />
+        <result column="editor" property="editor" />
+        <result column="status" property="status" />
+        <result column="data" property="data" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, task_id, task_name, create_time, creator, update_time, editor, status, data
+    </sql>
+
+</mapper>

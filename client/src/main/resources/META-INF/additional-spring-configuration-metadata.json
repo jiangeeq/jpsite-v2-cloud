@@ -1,0 +1,72 @@
+{
+  "properties": [
+    {
+      "name": "is.front.backend.separation",
+      "type": "java.lang.Boolean",
+      "description": "是否开启前后端分离.",
+      "defaultValue": false
+    },
+    {
+      "name": "is.enable.login.verify.code",
+      "type": "java.lang.Boolean",
+      "description": "是否开启验证码校验模式.",
+      "defaultValue": false
+    },
+    {
+      "name": "is.enable.login.jwt",
+      "type": "java.lang.Boolean",
+      "description": "是否开启jwt登录模式.",
+      "defaultValue": false
+    },
+    {
+      "name": "is.enable.oauth2.sso",
+      "type": "java.lang.Boolean",
+      "description": "是否开启oauth2sso单点登录模式.",
+      "defaultValue": false
+    },
+    {
+      "name": "is.enable.csrf",
+      "type": "java.lang.Boolean",
+      "description": "是否开启security csrf.",
+      "defaultValue": false
+    },{
+      "name": "spring.server.MaxFileSize",
+      "type": "java.lang.Long",
+      "description": "单个数据大小.",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.server.MaxRequestSize",
+      "type": "java.lang.Long",
+      "description": "总上传数据大小.",
+      "defaultValue": false
+    },{
+      "name": "iflytek.lfasr.appId",
+      "type": "java.lang.String",
+      "description": "讯飞开放平台语音转写功能appId.",
+      "defaultValue": false
+    },{
+      "name": "iflytek.lfasr.secretKey",
+      "type": "java.lang.String",
+      "description": "讯飞开放平台语音转写功能secretKey.",
+      "defaultValue": false
+    },{
+      "name": "jwt.sign.key",
+      "type": "java.lang.String",
+      "description": "json web token签名秘钥.",
+      "defaultValue": false
+    },{
+      "name": "oapi.dingtalk.url",
+      "type": "java.lang.String",
+      "description": "钉钉web hook url地址.",
+      "defaultValue": false
+    },{
+      "name": "oapi.dingtalk.secret",
+      "type": "java.lang.String",
+      "description": "钉钉群机器人签名.",
+      "defaultValue": false
+    }
+
+
+  ]
+}

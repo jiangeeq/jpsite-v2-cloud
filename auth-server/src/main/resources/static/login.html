@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>江南一点雨</title>
+    <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+
+<div class="materialContainer">
+    <div class="box">
+        <div class="title">统一认证服务授权中心--登录</div>
+        <form action="/oauth/token" method="post">
+            <input type="password" name="grant_type" value="password" hidden>
+            <input type="password" name="client_id" value="javaboy" hidden>
+            <input type="password" name="client_secret" value="123" hidden>
+            <input type="password" name="scope" value="all" hidden>
+
+            <div class="input">
+                <label for="name">用户名</label>
+                <input type="text" name="username" id="name">
+                <span class="spin"></span>
+            </div>
+            <div class="input">
+                <label for="pass">密码</label>
+                <input type="password" name="password" id="pass">
+                <span class="spin"></span>
+            </div>
+            <div class="input">
+                <label for="pass">记住我</label>
+                <input name="remember-me" type="checkbox" value="true">
+                <span class="spin"></span>
+            </div>
+            <div class="button login">
+                <button type="submit">
+                    <span>登录</span>
+                    <i class="fa fa-check"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="box" hidden>
+        <div class="title">江南一点雨 - json登录</div>
+        <form action="/doLogin" method="post" id="jsonForm">
+            <div class="input">
+                <label for="name">用户名</label>
+                <input type="text" name="username" id="name">
+                <span class="spin"></span>
+            </div>
+            <div class="input">
+                <label for="pass">密码</label>
+                <input type="password" name="password" id="pass">
+                <span class="spin"></span>
+            </div>
+            <div class="input">
+                <label for="pass">记住我</label>
+                <input name="remember-me" type="checkbox" value="true">
+                <span class="spin"></span>
+            </div>
+            <div class="button login">
+                <button type="button" id="jsonFormSubmit">
+                    <span>登录</span>
+                    <i class="fa fa-check"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>
+<script src="/js/jquery3.5.1.min.js"></script>
+<script src="/static/js/index.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+
+
+<script type="text/javascript">
+    $('#jsonFormSubmit').on('click', function () {
+        const formObject = {};
+        const formArray = $("#jsonForm").serializeArray();
+        $.each(formArray, function (i, item) {
+            formObject[item.name] = item.value;
+        });
+        $.ajax({
+            url: "/doLogin",
+            type: "POST",
+            data: JSON.stringify(formObject),
+            dataType: "json",
+            contentType: "application/json;charset=utf-8",
+            beforeSend: function (XMLHttpRequest) {
+                XMLHttpRequest.setRequestHeader("X-XSRF-TOKEN", $.cookie('XSRF-TOKEN'));
+            },
+            success: function (data) {
+                alert(JSON.stringify(data));
+                $(location).attr('href', "index.html")
+            },
+            error: function (data) {
+                alert("登录失败");
+            }
+        });
+    });
+</script>
+</body>
+</html>

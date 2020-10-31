@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <Target>System.out</Target>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="errorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--            按天轮转 -->
+            <fileNamePattern>error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!--            保存 30 天的历史记录，最大大小为 30GB -->
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [ %t:%r ] - [ %p ] %m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+    <appender name="sendErrorMsg" class="com.mty.jls.config.SendErrorMsgAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [ %t:%r ] - [ %p ] %m%n</pattern>
+        </layout>
+    </appender>
+    <root level="info">
+        <appender-ref ref="stdout"/>
+<!--        <appender-ref ref="errorFile"/>-->
+        <appender-ref ref="sendErrorMsg"/>
+    </root>
+</configuration>
