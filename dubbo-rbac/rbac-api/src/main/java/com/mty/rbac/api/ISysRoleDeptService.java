@@ -1,7 +1,8 @@
 package com.mty.rbac.api;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.mty.jls.rbac.domain.SysRoleDept;
+
+
+import com.mty.rbac.bean.ISysRoleDept;
 
 import java.util.List;
 
@@ -13,12 +14,12 @@ import java.util.List;
  * @author 蒋老湿
  * @since 2019-04-21
  */
-public interface ISysRoleDeptService extends IService<SysRoleDept> {
+public interface ISysRoleDeptService  {
 
     /**
      * 根据角色id查询部门ids
      * @param roleId
      * @return
      */
-    List<SysRoleDept> getRoleDeptIds(int roleId);
+    List<ISysRoleDept> getRoleDeptIds(int roleId);
 }

@@ -1,7 +1,7 @@
 package com.mty.rbac.api;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.mty.jls.rbac.domain.SysTenant;
+
+import com.mty.rbac.bean.ISysTenant;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
  * @author 蒋老湿
  * @since 2019-08-10
  */
-public interface ISysTenantService extends IService<SysTenant> {
+public interface ISysTenantService {
 
     /**
      * 保存租户
@@ -21,7 +21,7 @@ public interface ISysTenantService extends IService<SysTenant> {
      * @param sysTenant
      * @return
      */
-    boolean saveTenant(SysTenant sysTenant);
+    boolean saveTenant(ISysTenant sysTenant);
 
 
     /**
@@ -29,5 +29,5 @@ public interface ISysTenantService extends IService<SysTenant> {
      *
      * @return
      */
-    List<SysTenant> getNormalTenant();
+    List<ISysTenant> getNormalTenant();
 }

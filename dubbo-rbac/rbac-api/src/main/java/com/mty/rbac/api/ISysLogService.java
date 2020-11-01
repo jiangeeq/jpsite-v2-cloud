@@ -1,8 +1,5 @@
 package com.mty.rbac.api;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.mty.jls.rbac.domain.SysLog;
 
 /**
  * <p>
@@ -12,7 +9,7 @@ import com.mty.jls.rbac.domain.SysLog;
  * @author 蒋老湿
  * @since 2019-04-27
  */
-public interface ISysLogService extends IService<SysLog> {
+public interface ISysLogService {
 
     /**
      * 分页查询日志
@@ -21,7 +18,7 @@ public interface ISysLogService extends IService<SysLog> {
      * @param type
      * @return
      */
-    IPage<SysLog> selectLogList(Integer page, Integer pageSize, Integer type, String userName);
+//    IPage<SysLog> selectLogList(Integer page, Integer pageSize, Integer type, String userName);
 
 
 

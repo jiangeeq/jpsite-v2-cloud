@@ -1,9 +1,9 @@
 package com.mty.rbac.api;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.mty.jls.rbac.domain.SysDict;
-import com.mty.jls.rbac.dto.DictDTO;
+
+
+import com.mty.rbac.bean.IDictDTO;
+import com.mty.rbac.bean.ISysDict;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,21 +16,21 @@ import java.util.List;
  * @author 蒋老湿
  * @since 2019-05-17
  */
-public interface ISysDictService extends IService<SysDict> {
+public interface ISysDictService  {
     /**
      * 分页查询字典列表
      * @param page
      * @param pageSize
      * @return
      */
-    IPage<SysDict> selectDictList(int page, int pageSize);
+//    IPage<SysDict> selectDictList(int page, int pageSize);
 
     /**
      * 修改字典
      * @param dictDto
      * @return
      */
-    boolean updateDict(DictDTO dictDto);
+    Boolean updateDict(IDictDTO dictDto);
 
 
     /**
@@ -38,14 +38,14 @@ public interface ISysDictService extends IService<SysDict> {
      * @param name
      * @return
      */
-    List<SysDict> selectDictDetailList(String name);
+    List<ISysDict> selectDictDetailList(String name);
 
     /**
      * 根据字典名称删除
      * @param name
      * @return
      */
-    boolean deleteDictByName(String name);
+    Boolean deleteDictByName(String name);
 
 
     /**
@@ -53,6 +53,5 @@ public interface ISysDictService extends IService<SysDict> {
      * @param id
      * @return
      */
-    @Override
-    boolean removeById(Serializable id);
+    Boolean removeById(Integer id);
 }

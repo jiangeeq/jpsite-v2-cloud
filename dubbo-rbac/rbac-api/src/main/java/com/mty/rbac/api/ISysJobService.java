@@ -1,8 +1,7 @@
 package com.mty.rbac.api;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.mty.jls.rbac.domain.SysJob;
+
+import com.mty.rbac.bean.ISysJob;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
  * @author 蒋老湿
  * @since 2019-05-01
  */
-public interface ISysJobService extends IService<SysJob> {
+public interface ISysJobService {
 
     /**
      * 分页查询岗位列表
@@ -23,7 +22,7 @@ public interface ISysJobService extends IService<SysJob> {
      * @param jobName
      * @return
      */
-    IPage<SysJob> selectJobList(int page, int pageSize, String jobName);
+//    IPage<SysJob> selectJobList(int page, int pageSize, String jobName);
 
 
     /**
@@ -31,7 +30,7 @@ public interface ISysJobService extends IService<SysJob> {
      * @param deptId
      * @return
      */
-    List<SysJob> selectJobListByDeptId(Integer deptId);
+    List<ISysJob> selectJobListByDeptId(Integer deptId);
 
 
     String selectJobNameByJobId(Integer jobId);

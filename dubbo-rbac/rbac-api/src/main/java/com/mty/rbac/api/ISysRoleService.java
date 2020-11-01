@@ -1,9 +1,9 @@
 package com.mty.rbac.api;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.mty.jls.rbac.domain.SysMenu;
-import com.mty.jls.rbac.domain.SysRole;
-import com.mty.jls.rbac.dto.RoleDTO;
+
+import com.mty.rbac.bean.IRoleDTO;
+import com.mty.rbac.bean.ISysMenu;
+import com.mty.rbac.bean.ISysRole;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,42 +16,41 @@ import java.util.List;
  * @author 蒋老湿
  * @since 2019-04-21
  */
-public interface ISysRoleService extends IService<SysRole> {
+public interface ISysRoleService {
 
     /**
      * 保存角色和菜单
      * @param roleDto
      * @return
      */
-    boolean saveRoleMenu(RoleDTO roleDto);
+    boolean saveRoleMenu(IRoleDTO roleDto);
 
     /**
      * 更新角色和菜单
      * @param roleDto
      * @return
      */
-    boolean updateRoleMenu(RoleDTO roleDto);
+    boolean updateRoleMenu(IRoleDTO roleDto);
 
     /**
      * 根据主键删除角色
      * @param id
      * @return
      */
-    @Override
     boolean removeById(Serializable id);
 
     /**
      * 获取角色列表
      * @return
      */
-    List<SysRole> selectRoleList(String roleName);
+    List<ISysRole> selectRoleList(String roleName);
 
     /**
      * 根据角色id获取菜单
      * @param roleId
      * @return
      */
-    List<SysMenu> findMenuListByRoleId(int roleId);
+    List<ISysMenu> findMenuListByRoleId(int roleId);
 
     /**
      * 通过用户ID，查询角色信息
@@ -59,5 +58,5 @@ public interface ISysRoleService extends IService<SysRole> {
      * @param userId
      * @return
      */
-    List<SysRole> findRolesByUserId(Integer userId);
+    List<ISysRole> findRolesByUserId(Integer userId);
 }

@@ -1,7 +1,7 @@
 package com.mty.rbac.api;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.mty.jls.rbac.domain.SysUserRole;
+
+import com.mty.rbac.bean.ISysUserRole;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
  * @author 蒋老湿
  * @since 2019-04-21
  */
-public interface ISysUserRoleService extends IService<SysUserRole> {
+public interface ISysUserRoleService  {
 
 
     /**
@@ -21,5 +21,5 @@ public interface ISysUserRoleService extends IService<SysUserRole> {
      * @param userId
      * @return
      */
-    List<SysUserRole> selectUserRoleListByUserId(Integer userId);
+    List<ISysUserRole> selectUserRoleListByUserId(Integer userId);
 }

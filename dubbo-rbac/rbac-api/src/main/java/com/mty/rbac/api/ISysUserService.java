@@ -1,10 +1,8 @@
 package com.mty.rbac.api;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.mty.jls.rbac.domain.SysUser;
-import com.mty.jls.rbac.dto.UserDTO;
+
+import com.mty.rbac.bean.ISysUser;
+import com.mty.rbac.bean.IUserDTO;
 
 import java.util.Set;
 
@@ -16,7 +14,7 @@ import java.util.Set;
  * @author 蒋老湿
  * @since 2019-04-21
  */
-public interface ISysUserService extends IService<SysUser> {
+public interface ISysUserService  {
 
     /**
      * 分页查询用户信息（含有角色信息）
@@ -25,21 +23,21 @@ public interface ISysUserService extends IService<SysUser> {
      * @param userDTO 参数列表
      * @return
      */
-    IPage<SysUser> getUsersWithRolePage(Page page, UserDTO userDTO);
+//    IPage<SysUser> getUsersWithRolePage(Page page, UserDTO userDTO);
 
     /**
      * 保存用户以及角色部门等信息
      * @param userDto
      * @return
      */
-    boolean insertUser(UserDTO userDto);
+    boolean insertUser(IUserDTO userDto);
 
     /**
      * 更新用户以及角色部门等信息
      * @param userDto
      * @return
      */
-    boolean updateUser(UserDTO userDto);
+    boolean updateUser(IUserDTO userDto);
 
     /**
      * 删除用户信息
@@ -61,7 +59,7 @@ public interface ISysUserService extends IService<SysUser> {
      * @param username 用户名
      * @return 用户信息
      */
-    SysUser findByUserInfoName(String username);
+    ISysUser findByUserInfoName(String username);
 
     /**
      * 根据用户id查询权限
@@ -81,19 +79,19 @@ public interface ISysUserService extends IService<SysUser> {
      * 注册用户
      * @return
      */
-    boolean register(UserDTO userDTO);
+    boolean register(IUserDTO userDTO);
 
     /**
      * 修改用户信息
      * @param sysUser
      * @return
      */
-    boolean updateUserInfo(SysUser sysUser);
+    boolean updateUserInfo(ISysUser sysUser);
 
     /**
      * 通过用户去查找用户(id/用户名/手机号)
      * @param sysUser
      * @return
      */
-    SysUser findSecurityUserByUser(SysUser sysUser);
+    ISysUser findSecurityUserByUser(ISysUser sysUser);
 }

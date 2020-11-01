@@ -1,11 +1,9 @@
 package com.mty.rbac.api;
 
 
-
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.mty.jls.rbac.domain.SysDept;
-import com.mty.jls.rbac.dto.DeptDTO;
-import com.mty.jls.rbac.vo.DeptTreeVo;
+import com.mty.rbac.bean.IDeptDTO;
+import com.mty.rbac.bean.IDeptTreeVo;
+import com.mty.rbac.bean.ISysDept;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,27 +16,26 @@ import java.util.List;
  * @author 蒋老湿
  * @since 2019-04-21
  */
-public interface ISysDeptService extends IService<SysDept> {
+public interface ISysDeptService  {
 
     /**
      * 查询部门信息
      * @return
      */
-    List<SysDept> selectDeptList();
+    List<ISysDept> selectDeptList();
 
     /**
      * 更新部门
      * @param entity
      * @return
      */
-    boolean updateDeptById(DeptDTO entity);
+    boolean updateDeptById(IDeptDTO entity);
 
     /**
      * 删除部门
      * @param id
      * @return
      */
-    @Override
     boolean removeById(Serializable id);
 
     /**
@@ -59,7 +56,7 @@ public interface ISysDeptService extends IService<SysDept> {
      * 获取部门树
      * @return
      */
-    List<DeptTreeVo> getDeptTree();
+    List<IDeptTreeVo> getDeptTree();
 
 
 }
