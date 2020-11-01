@@ -2,6 +2,8 @@ package com.mty.jls.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mty.jls.code.ValidateCodeProcessorHolder;
+import com.mty.jls.config.security.bean.DynamicallyUrlAccessDecisionManager;
+import com.mty.jls.config.security.filter.DynamicallyUrlInterceptor;
 import com.mty.jls.config.security.provider.MyAuthenticationProvider;
 import com.mty.jls.contract.constant.PropertiesConstant;
 import com.mty.jls.contract.model.Response;
@@ -9,8 +11,10 @@ import com.mty.jls.dovecommon.utils.SpringUtil;
 import com.mty.jls.properties.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
+import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.core.session.SessionRegistryImpl;
@@ -26,7 +30,9 @@ import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
 import javax.sql.DataSource;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author jiangpeng
@@ -157,5 +163,18 @@ public class SecurityBeanConfig {
     @Bean
     public SpringSessionBackedSessionRegistry redisSessionRegistry(FindByIndexNameSessionRepository sessionRepository){
         return new SpringSessionBackedSessionRegistry(sessionRepository);
+    }
+
+    @Bean
+    public DynamicallyUrlInterceptor dynamicallyUrlInterceptor(){
+        DynamicallyUrlInterceptor interceptor = new DynamicallyUrlInterceptor();
+        interceptor.setSecurityMetadataSource(new MyFilterSecurityMetadataSource());
+
+        //配置RoleVoter决策
+        List<AccessDecisionVoter<? extends Object>> decisionVoters = new ArrayList<AccessDecisionVoter<? extends Object>>();
+        decisionVoters.add(new RoleVoter());
+        //设置认证决策管理器
+        interceptor.setAccessDecisionManager(new DynamicallyUrlAccessDecisionManager(decisionVoters));
+        return interceptor;
     }
 }

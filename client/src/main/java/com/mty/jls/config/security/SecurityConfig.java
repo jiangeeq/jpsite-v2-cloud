@@ -3,6 +3,7 @@ package com.mty.jls.config.security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mty.jls.config.security.bean.CustomWebAuthenticationDetailsSource;
 import com.mty.jls.config.security.filter.CustomLoginFilter;
+import com.mty.jls.config.security.filter.DynamicallyUrlInterceptor;
 import com.mty.jls.config.security.filter.JwtFilter;
 import com.mty.jls.config.security.filter.JwtLoginFilter;
 import com.mty.jls.config.security.filter.SsoJwtLoginFilter;
@@ -24,6 +25,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -64,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationSuccessHandler authenticationSuccessHandler;
     @Autowired
     private CustomWebAuthenticationDetailsSource customWebAuthenticationDetailsSource;
-//    @Autowired
+    //    @Autowired
 //    private SessionRegistryImpl sessionRegistry;
     @Autowired
     private SpringSessionBackedSessionRegistry redisSessionRegistry;
@@ -80,6 +82,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private OAuth2ClientProperties oAuth2ClientProperties;
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private DynamicallyUrlInterceptor dynamicallyUrlInterceptor;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -146,6 +150,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 authenticationManager, accessTokenUri,
                                 tokenServices),
                         LogoutFilter.class)
+                .addFilterAfter(dynamicallyUrlInterceptor, FilterSecurityInterceptor.class)
                 .csrf().disable()
                 .userDetailsService(userDetailsService)
                 .exceptionHandling()
