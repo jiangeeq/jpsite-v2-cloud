@@ -3,6 +3,7 @@ package com.mty.jls.rbac.api;
 
 
 import com.mty.jls.rbac.bean.IDictDTO;
+import com.mty.jls.rbac.bean.IPageResponse;
 import com.mty.jls.rbac.bean.ISysDict;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public interface ISysDictService  {
      * @param pageSize
      * @return
      */
-//    IPage<SysDict> selectDictList(int page, int pageSize);
+    IPageResponse selectDictList(int page, int pageSize);
 
     /**
      * 修改字典

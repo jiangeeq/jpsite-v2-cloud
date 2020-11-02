@@ -15,6 +15,7 @@ import java.util.List;
  */
 public interface ISysUserRoleService  {
 
+     boolean save(ISysUserRole entity);
 
     /**
      * 根据用户id查询用户角色关系

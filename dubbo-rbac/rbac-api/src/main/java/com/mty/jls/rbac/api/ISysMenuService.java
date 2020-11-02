@@ -18,6 +18,7 @@ import java.util.List;
  */
 public interface ISysMenuService {
 
+    boolean save(ISysMenu sysMenu);
     /**
      * 更新菜单信息
      * @param entity

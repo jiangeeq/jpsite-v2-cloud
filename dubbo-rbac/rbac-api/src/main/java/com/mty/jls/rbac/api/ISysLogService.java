@@ -1,6 +1,11 @@
 package com.mty.jls.rbac.api;
 
 
+import com.mty.jls.rbac.bean.IPageResponse;
+import com.mty.jls.rbac.bean.ISysLog;
+
+import java.util.List;
+
 /**
  * <p>
  * 系统日志 服务类
@@ -18,7 +23,7 @@ public interface ISysLogService {
      * @param type
      * @return
      */
-//    IPage<SysLog> selectLogList(Integer page, Integer pageSize, Integer type, String userName);
+    IPageResponse<List<ISysLog>> selectLogList(Integer page, Integer pageSize, Integer type, String userName);
 
 
 

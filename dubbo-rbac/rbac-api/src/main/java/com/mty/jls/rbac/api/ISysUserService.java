@@ -1,9 +1,12 @@
 package com.mty.jls.rbac.api;
 
 
+import com.dove.jls.common.bean.PageRequest;
+import com.mty.jls.rbac.bean.IPageResponse;
 import com.mty.jls.rbac.bean.ISysUser;
 import com.mty.jls.rbac.bean.IUserDTO;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,7 +26,7 @@ public interface ISysUserService  {
      * @param userDTO 参数列表
      * @return
      */
-//    IPage<SysUser> getUsersWithRolePage(Page page, UserDTO userDTO);
+    IPageResponse<List<ISysUser>> getUsersWithRolePage(PageRequest pageRequest, IUserDTO userDTO);
 
     /**
      * 保存用户以及角色部门等信息
@@ -51,7 +54,7 @@ public interface ISysUserService  {
      * @param userId
      * @return
      */
-    boolean restPass(Integer userId);
+    boolean restPass(Integer userId, String password);
 
     /**
      * 通过用户名查找用户个人信息

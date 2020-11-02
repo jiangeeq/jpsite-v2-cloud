@@ -21,7 +21,10 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.dove.jls</groupId>
+            <artifactId>dove-common</artifactId>
+        </dependency>
         <!--swagger api doc-->
         <dependency>
             <groupId>io.springfox</groupId>
