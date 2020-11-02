@@ -2,7 +2,7 @@ package com.mty.jls.rbac.service.impl;
 
 
 import com.mty.jls.contract.model.SecurityUser;
-import com.mty.jls.dovecommon.utils.BeanPlusUtil;
+import com.dove.jls.common.utils.BeanPlusUtil;
 import com.mty.jls.rbac.domain.SysUser;
 import com.mty.jls.rbac.service.ISysUserService;
 import lombok.extern.slf4j.Slf4j;

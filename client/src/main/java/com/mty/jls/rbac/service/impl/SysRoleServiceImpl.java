@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 
 import com.mty.jls.config.datascope.strategy.DataScopeContext;
-import com.mty.jls.dovecommon.utils.BeanPlusUtil;
+import com.dove.jls.common.utils.BeanPlusUtil;
 import com.mty.jls.rbac.domain.SysMenu;
 import com.mty.jls.rbac.domain.SysRole;
 import com.mty.jls.rbac.domain.SysRoleDept;
@@ -18,7 +18,6 @@ import com.mty.jls.rbac.mapper.SysRoleMapper;
 import com.mty.jls.rbac.service.ISysRoleDeptService;
 import com.mty.jls.rbac.service.ISysRoleMenuService;
 import com.mty.jls.rbac.service.ISysRoleService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

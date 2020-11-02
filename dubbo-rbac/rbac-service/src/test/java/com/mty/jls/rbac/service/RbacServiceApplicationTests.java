@@ -1,4 +1,4 @@
-package com.mty.rbac.service;
+package com.mty.jls.rbac.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

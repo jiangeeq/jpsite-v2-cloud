@@ -3,7 +3,7 @@ package com.mty.jls.config.security.filter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mty.jls.contract.constant.PropertiesConstant;
 import com.mty.jls.contract.model.SecurityUser;
-import com.mty.jls.dovecommon.utils.SpringUtil;
+import com.dove.jls.common.utils.SpringUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

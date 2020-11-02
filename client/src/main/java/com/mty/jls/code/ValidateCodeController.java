@@ -1,7 +1,7 @@
 package com.mty.jls.code;
 
 import com.mty.jls.code.contract.ValidateCodeProcessor;
-import com.mty.jls.dovecommon.utils.JsonUtil;
+import com.dove.jls.common.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -5,7 +5,7 @@ import com.mty.jls.code.contract.ValidateCode;
 import com.mty.jls.code.contract.ValidateCodeGenerator;
 import com.mty.jls.contract.exception.ValidateCodeException;
 import com.mty.jls.contract.model.Response;
-import com.mty.jls.dovecommon.utils.BeanPlusUtil;
+import com.dove.jls.common.utils.BeanPlusUtil;
 import com.mty.jls.rbac.controller.reqModel.GwRegisterReq;
 import com.mty.jls.rbac.domain.SysUser;
 import com.mty.jls.rbac.dto.UserDTO;

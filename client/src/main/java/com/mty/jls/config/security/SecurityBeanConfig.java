@@ -7,7 +7,7 @@ import com.mty.jls.config.security.filter.DynamicallyUrlInterceptor;
 import com.mty.jls.config.security.provider.MyAuthenticationProvider;
 import com.mty.jls.contract.constant.PropertiesConstant;
 import com.mty.jls.contract.model.Response;
-import com.mty.jls.dovecommon.utils.SpringUtil;
+import com.dove.jls.common.utils.SpringUtil;
 import com.mty.jls.properties.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

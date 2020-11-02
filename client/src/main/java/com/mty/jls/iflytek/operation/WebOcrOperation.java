@@ -1,9 +1,8 @@
 package com.mty.jls.iflytek.operation;
 
-import com.mty.jls.dovecommon.utils.FileUtil;
-import com.mty.jls.dovecommon.utils.HttpUtil;
-import com.mty.jls.dovecommon.utils.JsonUtil;
-import com.mty.jls.dovecommon.utils.RestTemplateUtils;
+import com.dove.jls.common.utils.FileUtil;
+import com.dove.jls.common.utils.HttpUtil;
+import com.dove.jls.common.utils.JsonUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

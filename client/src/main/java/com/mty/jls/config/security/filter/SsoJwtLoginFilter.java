@@ -3,7 +3,7 @@ package com.mty.jls.config.security.filter;
 import cn.hutool.core.bean.BeanUtil;
 import com.google.common.collect.Maps;
 import com.mty.jls.contract.model.SecurityUser;
-import com.mty.jls.dovecommon.utils.JsonUtil;
+import com.dove.jls.common.utils.JsonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHeaders;
 import org.springframework.boot.autoconfigure.security.oauth2.OAuth2ClientProperties;

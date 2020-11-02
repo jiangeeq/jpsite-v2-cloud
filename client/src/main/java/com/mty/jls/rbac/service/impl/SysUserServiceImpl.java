@@ -1,6 +1,5 @@
 package com.mty.jls.rbac.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -10,7 +9,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mty.jls.config.datascope.DataScope;
 import com.mty.jls.contract.exception.BaseException;
-import com.mty.jls.dovecommon.utils.BeanPlusUtil;
+import com.dove.jls.common.utils.BeanPlusUtil;
 import com.mty.jls.rbac.domain.SysUser;
 import com.mty.jls.rbac.domain.SysUserRole;
 import com.mty.jls.rbac.dto.UserDTO;
@@ -24,12 +23,7 @@ import com.mty.jls.utils.RbacUtil;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

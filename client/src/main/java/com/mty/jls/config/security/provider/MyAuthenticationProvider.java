@@ -3,7 +3,7 @@ package com.mty.jls.config.security.provider;
 import com.mty.jls.code.ValidateCodeProcessorHolder;
 import com.mty.jls.contract.constant.PropertiesConstant;
 import com.mty.jls.contract.enums.ValidateCodeEnum;
-import com.mty.jls.dovecommon.utils.SpringUtil;
+import com.dove.jls.common.utils.SpringUtil;
 import com.mty.jls.properties.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;

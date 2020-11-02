@@ -2,7 +2,7 @@ package com.mty.authserver.controller;
 
 import com.mty.authserver.domain.SysUser;
 import com.mty.authserver.service.ISysUserService;
-import com.mty.jls.dovecommon.utils.JsonUtil;
+import com.dove.jls.common.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.jwt.Jwt;

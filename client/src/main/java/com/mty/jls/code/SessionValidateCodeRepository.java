@@ -4,7 +4,7 @@ package com.mty.jls.code;
 import com.mty.jls.code.contract.ValidateCode;
 import com.mty.jls.code.contract.ValidateCodeRepository;
 import com.mty.jls.contract.enums.ValidateCodeEnum;
-import com.mty.jls.dovecommon.utils.HttpUtil;
+import com.dove.jls.common.utils.HttpUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 

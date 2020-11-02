@@ -1,7 +1,7 @@
 package com.mty.jls.iflytek.controller;
 
 import com.mty.jls.contract.model.Response;
-import com.mty.jls.dovecommon.utils.FileUtil;
+import com.dove.jls.common.utils.FileUtil;
 import com.mty.jls.upload.service.PicUploadTencentService;
 import com.mty.jls.upload.vo.UploadResult;
 import io.swagger.annotations.Api;

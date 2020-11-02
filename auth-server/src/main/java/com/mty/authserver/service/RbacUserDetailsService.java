@@ -3,7 +3,7 @@ package com.mty.authserver.service;
 
 import com.mty.authserver.domain.SysUser;
 import com.mty.authserver.domain.SecurityUser;
-import com.mty.jls.dovecommon.utils.BeanPlusUtil;
+import com.dove.jls.common.utils.BeanPlusUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableAsync;
