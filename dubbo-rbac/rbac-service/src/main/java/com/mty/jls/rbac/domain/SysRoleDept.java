@@ -29,4 +29,7 @@ public class SysRoleDept extends Model<SysRoleDept> {
 
     @ApiModelProperty("部门ID")
     private Integer deptId;
+
+    @ApiModelProperty("租户Id")
+    private Integer tenantId;
 }

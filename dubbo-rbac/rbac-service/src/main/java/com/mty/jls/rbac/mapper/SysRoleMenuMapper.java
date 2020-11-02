@@ -24,4 +24,5 @@ public interface SysRoleMenuMapper extends BaseMapper<SysRoleMenu> {
     @Select("SELECT rm.menu_id FROM sys_role_menu rm,sys_user_role ur,sys_user u WHERE u.user_id = #{userId} AND u.user_id = ur.user_id AND rm.role_id = ur.role_id")
     List<Integer> getMenuIdByUserId(Integer userId);
 
+    void saveBatch(List<SysRoleMenu> list);
 }

@@ -4,7 +4,6 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-
 import com.dove.jls.common.utils.BeanPlusUtil;
 import com.mty.jls.rbac.api.ISysDeptService;
 import com.mty.jls.rbac.bean.IDeptDTO;
@@ -15,7 +14,6 @@ import com.mty.jls.rbac.mapper.SysDeptMapper;
 import com.mty.jls.rbac.util.RbacUtil;
 import com.mty.jls.rbac.vo.DeptTreeVo;
 import org.apache.dubbo.config.annotation.Service;
-import org.springframework.beans.BeanUtils;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -49,8 +47,7 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
 
     @Override
     public boolean updateDeptById(IDeptDTO entity) {
-        SysDept sysDept = new SysDept();
-        BeanUtils.copyProperties(entity, sysDept);
+        SysDept sysDept = BeanPlusUtil.copySingleProperties(entity, SysDept::new);
         sysDept.setUpdateTime(LocalDateTime.now());
         return this.updateById(sysDept);
     }

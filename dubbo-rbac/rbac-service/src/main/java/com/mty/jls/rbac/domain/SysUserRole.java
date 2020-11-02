@@ -49,5 +49,5 @@ public class SysUserRole extends Model<SysUserRole> {
     @TableField(exist = false)
     private String roleName;
 
-
+    private Integer tenantId;
 }

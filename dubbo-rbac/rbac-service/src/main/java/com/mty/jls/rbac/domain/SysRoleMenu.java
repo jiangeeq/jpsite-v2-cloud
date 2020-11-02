@@ -29,4 +29,7 @@ public class SysRoleMenu extends Model<SysRoleMenu> {
 
     @ApiModelProperty("菜单ID")
     private Integer menuId;
+
+    @ApiModelProperty("租户Id")
+    private Integer tenantId;
 }

@@ -29,7 +29,6 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      *
      * @param page      分页
      * @param userDTO   查询参数
-     * @param dataScope
      * @return list
      */
     IPage<SysUser> getUserVosPage(Page page, @Param("query") UserDTO userDTO);

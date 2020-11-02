@@ -1,20 +1,19 @@
 package com.mty.jls.rbac.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.dove.jls.common.utils.BeanPlusUtil;
 import com.mty.jls.rbac.api.ISysMenuService;
-import com.mty.jls.rbac.bean.ISysMenu;
-import com.mty.jls.rbac.mapper.SysMenuMapper;
+import com.mty.jls.rbac.api.ISysRoleMenuService;
 import com.mty.jls.rbac.bean.IMenuDTO;
+import com.mty.jls.rbac.bean.ISysMenu;
 import com.mty.jls.rbac.constant.MenuConstant;
 import com.mty.jls.rbac.domain.SysMenu;
-import com.mty.jls.rbac.api.ISysRoleMenuService;
+import com.mty.jls.rbac.mapper.SysMenuMapper;
 import com.mty.jls.rbac.util.RbacUtil;
 import org.apache.dubbo.config.annotation.Service;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
@@ -32,19 +31,17 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     @Autowired
     private ISysRoleMenuService roleMenuService;
 
-//    @Override
-//    public boolean save(ISysMenu sysMenu) {
-//        SysMenu menu = new SysMenu();
-//        BeanUtil.copyProperties(sysMenu, menu);
-//        // 菜单校验
-//        verifyForm(menu);
-//        return super.save(menu);
-//    }
+    @Override
+    public boolean save(ISysMenu sysMenu) {
+        SysMenu menu = BeanPlusUtil.copySingleProperties(sysMenu, SysMenu::new);
+        // 菜单校验
+        verifyForm(menu);
+        return super.save(menu);
+    }
 
     @Override
     public boolean updateMenuById(IMenuDTO entity) {
-        SysMenu sysMenu = new SysMenu();
-        BeanUtils.copyProperties(entity, sysMenu);
+        SysMenu sysMenu = BeanPlusUtil.copySingleProperties(entity, SysMenu::new);
         // 菜单校验
         verifyForm(sysMenu);
         return this.updateById(sysMenu);
@@ -74,8 +71,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         RbacUtil.findChildren(parentMenus, menus, 0);
         parentMenus.sort(Comparator.comparing(SysMenu::getSort));
 
-        ArrayList<ISysMenu> iSysMenus = new ArrayList<>();
-        BeanUtil.copyProperties(parentMenus, iSysMenus);
+        List<ISysMenu> iSysMenus = BeanPlusUtil.copyListProperties(parentMenus, ISysMenu::new);
         return iSysMenus;
     }
 
@@ -83,8 +79,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
     public ISysMenu getMenuById(Integer parentId) {
         SysMenu sysMenu = baseMapper.selectOne(Wrappers.<SysMenu>lambdaQuery().select(SysMenu::getType).eq(SysMenu::getMenuId, parentId));
 
-        ISysMenu iSysMenu = new ISysMenu();
-        BeanUtil.copyProperties(sysMenu, iSysMenu);
+        ISysMenu iSysMenu = BeanPlusUtil.copySingleProperties(sysMenu, ISysMenu::new);
         return iSysMenu;
     }
 
@@ -110,7 +105,8 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         //上级菜单类型
         int parentType = MenuConstant.MenuType.CATALOG.getValue();
         if (menu.getParentId() != 0) {
-            SysMenu parentMenu = baseMapper.selectOne(Wrappers.<SysMenu>lambdaQuery().select(SysMenu::getType).eq(SysMenu::getMenuId, menu.getParentId()));
+            SysMenu parentMenu = baseMapper.selectOne(Wrappers.<SysMenu>lambdaQuery().select(SysMenu::getType).eq(SysMenu::getMenuId,
+                    menu.getParentId()));
             parentType = parentMenu.getType();
         }
         //目录、菜单
