@@ -1,6 +1,7 @@
 package com.mty.jls.rbac.api;
 
 
+import com.mty.jls.rbac.bean.IPageResponse;
 import com.mty.jls.rbac.bean.ISysJob;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public interface ISysJobService {
      * @param jobName
      * @return
      */
-//    IPage<SysJob> selectJobList(int page, int pageSize, String jobName);
+    IPageResponse<List<ISysJob>> selectJobList(int page, int pageSize, String jobName);
 
 
     /**

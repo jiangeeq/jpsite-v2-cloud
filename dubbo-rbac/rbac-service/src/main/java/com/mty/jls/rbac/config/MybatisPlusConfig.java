@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @Configuration
 @Slf4j
-@MapperScan({"com.mty.rbac.mapper"})
+@MapperScan({"com.mty.jls.rbac.mapper"})
 public class MybatisPlusConfig {
 
 
