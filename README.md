@@ -26,3 +26,7 @@
 |knife4j  |            2.0.4|
 |lombok  |        1.18.2|
 |lettuce  |  5.3.4.RELEASE|
+
+![alt jpsite-cloud集成dubbo&nacos&getway架构图](http://assets.processon.com/chart_image/5fa16bd1e0b34d28c56a29d2.png)
+
+![alt oauth2 授权中心流程](http://assets.processon.com/chart_image/5f8d4d04e401fd06fd932ec5.png)
