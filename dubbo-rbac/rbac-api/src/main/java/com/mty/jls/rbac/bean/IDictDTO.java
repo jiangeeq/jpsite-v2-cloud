@@ -5,12 +5,13 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @ApiModel("字典DTO")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class IDictDTO implements Serializable{
+public class IDictDTO implements Serializable {
     @ApiModelProperty("编号")
     private Integer id;
 

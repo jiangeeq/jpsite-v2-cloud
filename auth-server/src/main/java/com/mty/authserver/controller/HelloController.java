@@ -1,8 +1,9 @@
 package com.mty.authserver.controller;
 
-import com.mty.authserver.domain.SysUser;
-import com.mty.authserver.service.ISysUserService;
 import com.dove.jls.common.utils.JsonUtil;
+import com.mty.jls.rbac.api.ISysUserService;
+import com.mty.jls.rbac.bean.ISysUser;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.jwt.Jwt;
@@ -20,7 +21,7 @@ import java.util.Map;
  */
 @RestController
 public class HelloController {
-    @Autowired
+    @Reference(version = "1.0.0")
     private ISysUserService sysUserService;
 
     @GetMapping("/hello")
@@ -34,11 +35,11 @@ public class HelloController {
     }
 
     @GetMapping("/user")
-    public SysUser getUser(HttpServletRequest request) {
+    public ISysUser getUser(HttpServletRequest request) {
         final String jwt = request.getHeader("Authorization").replace("bearer ", "").replace("Bearer ", "");
         final Jwt decode = JwtHelper.decode(jwt);
         final Map<String, String> map = JsonUtil.toMap(decode.getClaims(), JsonUtil.StringObjectMap);
-        final SysUser sysUser = sysUserService.findByUserInfoName(map.get("user_name"));
+        final ISysUser sysUser = sysUserService.findByUserInfoName(map.get("user_name"));
         sysUser.setPassword("");
         return sysUser;
     }

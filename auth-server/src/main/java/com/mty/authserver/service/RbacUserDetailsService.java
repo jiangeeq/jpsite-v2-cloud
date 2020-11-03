@@ -1,11 +1,12 @@
 package com.mty.authserver.service;
 
 
-import com.mty.authserver.domain.SysUser;
 import com.mty.authserver.domain.SecurityUser;
 import com.dove.jls.common.utils.BeanPlusUtil;
+import com.mty.jls.rbac.api.ISysUserService;
+import com.mty.jls.rbac.bean.ISysUser;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -26,14 +27,14 @@ import java.util.Objects;
 @Slf4j
 @EnableAsync
 public class RbacUserDetailsService implements UserDetailsService {
-    @Autowired
+    @Reference(version = "1.0.0")
     private ISysUserService sysUserService;
 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("====>表单登录用户名[{}]", username);
-        SysUser user = sysUserService.findByUserInfoName(username);
+        ISysUser user = sysUserService.findByUserInfoName(username);
         if (Objects.isNull(user)) {
             throw new UsernameNotFoundException("当前用户不存在");
         }

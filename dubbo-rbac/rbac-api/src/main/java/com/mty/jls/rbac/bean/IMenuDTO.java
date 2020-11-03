@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+
 /**
  * @Classname UserDTO
  * @Description 菜单Dto
@@ -15,7 +17,7 @@ import lombok.EqualsAndHashCode;
 @ApiModel("菜单DTO")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class IMenuDTO implements Serializable{
+public class IMenuDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
