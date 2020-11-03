@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class IRedisVo implements Serializable {
+public class IRedisVo implements Serializable{
 
     /**
      * key

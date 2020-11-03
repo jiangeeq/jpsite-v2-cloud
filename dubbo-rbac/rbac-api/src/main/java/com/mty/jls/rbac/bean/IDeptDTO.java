@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+
 /**
  * @Classname UserDTO
  * @Description 部门Dto
@@ -15,7 +17,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel("部门数据传输对象")
-public class IDeptDTO {
+public class IDeptDTO implements Serializable {
     @ApiModelProperty("部门id")
     private Integer deptId;
 

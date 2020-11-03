@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @ApiModel("菜单DTO")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class IMenuDTO {
+public class IMenuDTO implements Serializable{
 
     private static final long serialVersionUID = 1L;
 

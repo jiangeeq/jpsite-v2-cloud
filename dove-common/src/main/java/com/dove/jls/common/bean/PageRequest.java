@@ -3,12 +3,14 @@ package com.dove.jls.common.bean;
 import cn.hutool.core.util.ArrayUtil;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author jiangpeng
  * @date 2020/11/219:23
  */
 @Data
-public class PageRequest {
+public class PageRequest implements Serializable {
     public static final int DEFAULT_PAGE_SIZE = 20;
 
     /** 页码 */

@@ -4,12 +4,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 
 @ApiModel("角色DTO")
 @Data
-public class IRoleDTO {
+public class IRoleDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @ApiModelProperty("角色主键")

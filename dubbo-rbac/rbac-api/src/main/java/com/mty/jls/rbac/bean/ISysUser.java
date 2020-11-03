@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Accessors(chain = true)
-public class ISysUser {
+public class ISysUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

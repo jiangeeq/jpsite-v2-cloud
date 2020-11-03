@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @ApiModel("字典DTO")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class IDictDTO {
+public class IDictDTO implements Serializable{
     @ApiModelProperty("编号")
     private Integer id;
 

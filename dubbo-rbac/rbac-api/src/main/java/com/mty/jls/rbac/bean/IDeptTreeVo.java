@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ import java.util.List;
 @Getter
 @ToString
 @Accessors(chain = true)
-public class IDeptTreeVo {
+public class IDeptTreeVo implements Serializable {
 
     private int id;
     private String label;

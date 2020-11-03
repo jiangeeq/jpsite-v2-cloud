@@ -6,12 +6,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 
 @ApiModel("角色菜单表")
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class ISysRoleMenu {
+public class ISysRoleMenu implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

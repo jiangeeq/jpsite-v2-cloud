@@ -5,12 +5,13 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 @ApiModel("菜单Vo")
 @Data
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class IMenuVo {
+public class IMenuVo implements Serializable {
     @ApiModelProperty("菜单名称")
     private String name;
 

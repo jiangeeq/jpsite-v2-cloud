@@ -6,6 +6,7 @@ import com.dove.jls.common.bean.BaseResponse;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -15,7 +16,7 @@ import java.util.Collection;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
-public class IPageResponse<T extends Collection> extends BaseResponse<T> {
+public class IPageResponse<T extends Collection> extends BaseResponse<T> implements Serializable {
 
     public static <T extends Collection> IPageResponse<T> ok() {
         final IPageResponse<T> pageResponse = new IPageResponse<>();

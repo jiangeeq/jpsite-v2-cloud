@@ -21,9 +21,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.mty.jls</groupId>
+            <groupId>com.dove.jls</groupId>
             <artifactId>dove-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
