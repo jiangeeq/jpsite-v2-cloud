@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebListener;
 @Component
 public class MyContextListener implements ServletContextListener {
     private SSHConnection conexionssh;
+    private SSHConnection2 conexionssh2;
+
     public MyContextListener() {
         super();
     }
@@ -23,6 +25,9 @@ public class MyContextListener implements ServletContextListener {
         try {
             conexionssh = new SSHConnection();
             conexionssh.SSHConnection();
+
+            conexionssh2 = new SSHConnection2();
+            conexionssh2.SSHConnection();
             System.out.println("\n\n\n成功建立SSH连接！\n\n\n");
         } catch (Throwable e) {
             System.out.println("\n\n\nSSH连接失败！\n\n\n");
@@ -38,6 +43,7 @@ public class MyContextListener implements ServletContextListener {
         System.out.println("Context destroyed ... !\n\n\n");
         try {
             conexionssh.closeSSH(); // disconnect
+            conexionssh2.closeSSH(); // disconnect
             System.out.println("\n\n\n成功断开SSH连接!\n\n\n");
         } catch (Exception e) {
             e.printStackTrace();
