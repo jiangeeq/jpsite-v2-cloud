@@ -2,6 +2,7 @@ package com.dove.jls.common.bean;
 
 import cn.hutool.core.util.ArrayUtil;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
  * @date 2020/11/219:23
  */
 @Data
+@Accessors(chain = true)
 public class PageRequest implements Serializable {
     public static final int DEFAULT_PAGE_SIZE = 20;
 
