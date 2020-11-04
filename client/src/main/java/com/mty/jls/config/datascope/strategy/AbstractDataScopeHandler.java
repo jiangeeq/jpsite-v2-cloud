@@ -1,9 +1,8 @@
 package com.mty.jls.config.datascope.strategy;
 
 
-
 import com.mty.jls.contract.enums.DataScopeTypeEnum;
-import com.mty.jls.rbac.dto.RoleDTO;
+import com.mty.jls.rbac.bean.IRoleDTO;
 
 import java.util.List;
 
@@ -22,5 +21,5 @@ public interface AbstractDataScopeHandler {
      * @param dataScopeTypeEnum
      * @return
      */
-    List<Integer> getDeptIds(RoleDTO roleDto, DataScopeTypeEnum dataScopeTypeEnum);
+    List<Integer> getDeptIds(IRoleDTO roleDto, DataScopeTypeEnum dataScopeTypeEnum);
 }

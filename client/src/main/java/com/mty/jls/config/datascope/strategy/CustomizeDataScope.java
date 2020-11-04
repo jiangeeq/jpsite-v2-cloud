@@ -2,9 +2,9 @@ package com.mty.jls.config.datascope.strategy;
 
 
 import com.mty.jls.contract.enums.DataScopeTypeEnum;
-import com.mty.jls.rbac.dto.RoleDTO;
-import com.mty.jls.rbac.service.ISysDeptService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mty.jls.rbac.api.ISysDeptService;
+import com.mty.jls.rbac.bean.IRoleDTO;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -22,11 +22,11 @@ import java.util.Set;
 @Component("4")
 public class CustomizeDataScope implements AbstractDataScopeHandler {
 
-    @Autowired
+    @Reference(version = "1.0.0")
     private ISysDeptService deptService;
 
     @Override
-    public List<Integer> getDeptIds(RoleDTO roleDto, DataScopeTypeEnum dataScopeTypeEnum) {
+    public List<Integer> getDeptIds(IRoleDTO roleDto, DataScopeTypeEnum dataScopeTypeEnum) {
         List<Integer> roleDeptIds = roleDto.getRoleDeptIds();
         List<Integer> ids = new ArrayList<>();
         for (Integer deptId : roleDeptIds) {

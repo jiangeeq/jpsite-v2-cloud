@@ -27,7 +27,7 @@ import java.util.Objects;
 @EnableTransactionManagement
 @Configuration
 @Slf4j
-@MapperScan({"com.mty.jls.rbac.mapper", "com.mty.jls.business.dao", "com.mty.jls.iflytek.dao"})
+@MapperScan({"com.mty.jls.business.dao", "com.mty.jls.iflytek.dao"})
 public class MybatisPlusConfig {
     @Autowired
     private TenantConfigProperties configProperties;

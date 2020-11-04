@@ -2,9 +2,10 @@ package com.mty.jls.config.datascope.strategy;
 
 
 import com.mty.jls.contract.enums.DataScopeTypeEnum;
-import com.mty.jls.rbac.dto.RoleDTO;
-import com.mty.jls.rbac.service.ISysUserService;
+import com.mty.jls.rbac.api.ISysUserService;
+import com.mty.jls.rbac.bean.IRoleDTO;
 import com.mty.jls.utils.RbacUtil;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,11 +22,11 @@ import java.util.List;
 @Component("2")
 public class ThisLevelDataScope implements AbstractDataScopeHandler {
 
-    @Autowired
+    @Reference(version = "1.0.0")
     private ISysUserService userService;
 
     @Override
-    public List<Integer> getDeptIds(RoleDTO roleDto, DataScopeTypeEnum dataScopeTypeEnum) {
+    public List<Integer> getDeptIds(IRoleDTO roleDto, DataScopeTypeEnum dataScopeTypeEnum) {
         // 用于存储部门id
         List<Integer> deptIds = new ArrayList<>();
         deptIds.add(userService.findByUserInfoName(RbacUtil.getSecurityUser().getUsername()).getDeptId());

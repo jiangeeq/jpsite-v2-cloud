@@ -3,21 +3,19 @@ package com.mty.jls.utils;
 import com.mty.jls.config.security.bean.CustomWebAuthenticationDetails;
 import com.mty.jls.contract.exception.BaseException;
 import com.mty.jls.contract.model.SecurityUser;
-import com.mty.jls.rbac.domain.SysDept;
-import com.mty.jls.rbac.domain.SysMenu;
-import com.mty.jls.rbac.vo.DeptTreeVo;
-import com.mty.jls.rbac.vo.MenuMetaVo;
-import com.mty.jls.rbac.vo.MenuVo;
+import com.mty.jls.rbac.bean.IDeptTreeVo;
+import com.mty.jls.rbac.bean.IMenuMetaVo;
+import com.mty.jls.rbac.bean.IMenuVo;
+import com.mty.jls.rbac.bean.ISysDept;
+import com.mty.jls.rbac.bean.ISysMenu;
 import io.jsonwebtoken.lang.Collections;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
-import org.apache.tomcat.jni.Directory;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -53,16 +51,16 @@ public class RbacUtil {
         return (CustomWebAuthenticationDetails) authentication.getDetails();
     }
 
-    public List<MenuVo> buildMenus(List<SysMenu> sysMenuList) {
-        List<MenuVo> list = new LinkedList<>();
+    public List<IMenuVo> buildMenus(List<ISysMenu> sysMenuList) {
+        List<IMenuVo> list = new LinkedList<>();
 
         sysMenuList.forEach(sysMenu -> {
                     if (sysMenu != null) {
-                        List<SysMenu> menuChildren = sysMenu.getChildren();
-                        MenuVo menuVo = new MenuVo();
+                        List<ISysMenu> menuChildren = sysMenu.getChildren();
+                        IMenuVo menuVo = new IMenuVo();
                         menuVo.setName(sysMenu.getName());
                         menuVo.setPath(sysMenu.getPath());
-                        menuVo.setMeta(new MenuMetaVo(sysMenu.getName(), sysMenu.getIcon()));
+                        menuVo.setMeta(new IMenuMetaVo(sysMenu.getName(), sysMenu.getIcon()));
                         // 如果不是外链
                         if (sysMenu.getIsFrame()) {
                             if (sysMenu.getParentId().equals(0)) {
@@ -85,7 +83,7 @@ public class RbacUtil {
                             menuVo.setMeta(null);
                             menuVo.setComponent("Layout");
 
-                            MenuVo thisMenuVo = new MenuVo();
+                            IMenuVo thisMenuVo = new IMenuVo();
                             thisMenuVo.setMeta(menuVo.getMeta());
                             // 非外链
                             if (sysMenu.getIsFrame()) {
@@ -96,7 +94,7 @@ public class RbacUtil {
                                 thisMenuVo.setPath(sysMenu.getPath());
                             }
 
-                            List<MenuVo> childMenuVoList = new ArrayList<>();
+                            List<IMenuVo> childMenuVoList = new ArrayList<>();
                             childMenuVoList.add(thisMenuVo);
                             menuVo.setChildren(childMenuVoList);
                         }
@@ -126,10 +124,10 @@ public class RbacUtil {
      * @param menus
      * @param menuType
      */
-    public void findChildren(List<SysMenu> parentMenuList, List<SysMenu> menus, int menuType) {
-        for (SysMenu parentMenu : parentMenuList) {
-            List<SysMenu> children = new ArrayList<>();
-            for (SysMenu menu : menus) {
+    public void findChildren(List<ISysMenu> parentMenuList, List<ISysMenu> menus, int menuType) {
+        for (ISysMenu parentMenu : parentMenuList) {
+            List<ISysMenu> children = new ArrayList<>();
+            for (ISysMenu menu : menus) {
                 if (menuType == 1 && menu.getType() == 2) {
                     // 如果是获取类型不需要按钮，且菜单类型是按钮的，直接过滤掉
                     continue;
@@ -142,7 +140,7 @@ public class RbacUtil {
                     }
                 }
             }
-            children.sort(Comparator.comparing(SysMenu::getSort));
+            children.sort(Comparator.comparing(ISysMenu::getSort));
             parentMenu.setChildren(children);
             findChildren(children, menus, menuType);
         }
@@ -154,19 +152,19 @@ public class RbacUtil {
      * @param parentDeptList
      * @param allDeptList
      */
-    public void findChildrenToDo(List<SysDept> parentDeptList, List<SysDept> allDeptList) {
+    public void findChildrenToDo(List<ISysDept> parentDeptList, List<ISysDept> allDeptList) {
 
-        for (SysDept parentDept : parentDeptList) {
-            DeptTreeVo parentDeptTreeVo = new DeptTreeVo().setId(parentDept.getDeptId()).setLabel(parentDept.getName());
-            List<SysDept> childrenDeptList = new ArrayList<>();
-            List<DeptTreeVo> childrenDeptVoList = new ArrayList<>();
-            for (SysDept dept : allDeptList) {
+        for (ISysDept parentDept : parentDeptList) {
+            IDeptTreeVo parentDeptTreeVo = new IDeptTreeVo().setId(parentDept.getDeptId()).setLabel(parentDept.getName());
+            List<ISysDept> childrenDeptList = new ArrayList<>();
+            List<IDeptTreeVo> childrenDeptVoList = new ArrayList<>();
+            for (ISysDept dept : allDeptList) {
                 // 如果当前部门的ParentId 是 parentDept的id
                 if (parentDept.getDeptId() != null && parentDept.getDeptId().equals(dept.getParentId())) {
                     dept.setParentName(parentDept.getName());
                     // 设置等级为parentDept的下一级
                     dept.setLevel(parentDept.getLevel() + 1);
-                    DeptTreeVo deptTreeVo = new DeptTreeVo().setLabel(dept.getName()).setId(dept.getDeptId());
+                    IDeptTreeVo deptTreeVo = new IDeptTreeVo().setLabel(dept.getName()).setId(dept.getDeptId());
                     childrenDeptList.add(dept);
                     childrenDeptVoList.add(deptTreeVo);
                 }
@@ -184,13 +182,13 @@ public class RbacUtil {
      * @param parentDeptList
      * @param allDeptList
      */
-    public void findChildrenToVo(List<DeptTreeVo> parentDeptList, List<SysDept> allDeptList) {
+    public void findChildrenToVo(List<IDeptTreeVo> parentDeptList, List<ISysDept> allDeptList) {
 
-        for (DeptTreeVo parentDeptVo : parentDeptList) {
-            List<DeptTreeVo> childrenDeptVoList = new ArrayList<>();
-            for (SysDept dept : allDeptList) {
+        for (IDeptTreeVo parentDeptVo : parentDeptList) {
+            List<IDeptTreeVo> childrenDeptVoList = new ArrayList<>();
+            for (ISysDept dept : allDeptList) {
                 if (parentDeptVo.getId() == dept.getParentId()) {
-                    DeptTreeVo deptTreeVo = new DeptTreeVo();
+                    IDeptTreeVo deptTreeVo = new IDeptTreeVo();
                     deptTreeVo.setLabel(dept.getName());
                     deptTreeVo.setId(dept.getDeptId());
                     childrenDeptVoList.add(deptTreeVo);
@@ -208,9 +206,9 @@ public class RbacUtil {
      * @param sysMenu
      * @return
      */
-    public boolean exists(List<SysMenu> sysMenus, SysMenu sysMenu) {
+    public boolean exists(List<ISysMenu> sysMenus, ISysMenu sysMenu) {
         boolean exist = false;
-        for (SysMenu menu : sysMenus) {
+        for (ISysMenu menu : sysMenus) {
             if (menu.getMenuId().equals(sysMenu.getMenuId())) {
                 exist = true;
             }

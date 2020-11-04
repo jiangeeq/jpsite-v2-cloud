@@ -5,7 +5,7 @@ import com.dove.jls.common.utils.JsonUtil;
 import com.dove.jls.common.utils.JwtUtil;
 import com.dove.jls.common.utils.SpringUtil;
 import com.dove.jls.common.utils.ValidateUtil;
-import com.mty.jls.rbac.service.impl.RbacUserDetailsService;
+import com.mty.jls.service.RbacUserDetailsService;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHeaders;

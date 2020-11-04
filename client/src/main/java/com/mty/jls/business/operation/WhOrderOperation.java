@@ -1,5 +1,7 @@
 package com.mty.jls.business.operation;
 
+import com.dove.jls.common.utils.BeanPlusUtil;
+import com.dove.jls.common.utils.ValidateUtil;
 import com.mty.jls.business.dto.WhOrderDTO;
 import com.mty.jls.business.entity.WhAccountRecords;
 import com.mty.jls.business.entity.WhOrder;
@@ -9,11 +11,10 @@ import com.mty.jls.business.enums.OrderStateEnum;
 import com.mty.jls.business.service.WhAccountRecordsService;
 import com.mty.jls.business.service.WhOrderService;
 import com.mty.jls.business.service.WhProductService;
-import com.dove.jls.common.utils.BeanPlusUtil;
-import com.dove.jls.common.utils.ValidateUtil;
-import com.mty.jls.rbac.domain.SysUser;
-import com.mty.jls.rbac.service.ISysUserService;
+import com.mty.jls.rbac.api.ISysUserService;
+import com.mty.jls.rbac.bean.ISysUser;
 import com.mty.jls.utils.RbacUtil;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,13 +34,13 @@ public class WhOrderOperation {
     private WhOrderService orderService;
     @Autowired
     private WhAccountRecordsService accountRecordsService;
-    @Autowired
-    private ISysUserService sysUserService;
+//    @Reference(version = "1.0.0")
+//    private ISysUserService sysUserService;
 
     @Transactional(rollbackFor = Exception.class)
     public void addOrder(WhOrderDTO orderDTO) {
         final WhProduct product = productService.getByCode(orderDTO.getProductCode());
-        final SysUser sysUser = sysUserService.findByUserInfoName(RbacUtil.getSecurityUser().getUsername());
+        final ISysUser sysUser =null; // sysUserService.findByUserInfoName(RbacUtil.getSecurityUser().getUsername());
         final BigDecimal totalSalePrice = orderDTO.getTotalSalePrice();
 
         final BigDecimal realSalePrice = product.getSalePrice().multiply(BigDecimal.valueOf(orderDTO.getSaleNum()));
@@ -63,12 +64,13 @@ public class WhOrderOperation {
         accountRecordsService.save(accountRecord);
         // 更新账户余额
         var newBalance = sysUser.getBalance().subtract(order.getTotalSalePrice());
-        sysUserService.updateById(sysUser.setBalance(newBalance));
+        sysUser.setBalance(newBalance);
+//        sysUserService.updateUserInfo(BeanPlusUtil.copySingleProperties(sysUser, ISysUser::new));
         // 插入订单
         orderService.save(order);
     }
 
-    private WhAccountRecords buildAccountRecord(WhOrder order, SysUser sysUser) {
+    private WhAccountRecords buildAccountRecord(WhOrder order, ISysUser sysUser) {
         final WhAccountRecords accountRecord =
                 new WhAccountRecords().setAmount(order.getTotalSalePrice()).setTradeNo(order.getNo()).setCreator(0)
                         .setOldValue(sysUser.getBalance()).setNewValue(sysUser.getBalance().subtract(order.getTotalSalePrice()))

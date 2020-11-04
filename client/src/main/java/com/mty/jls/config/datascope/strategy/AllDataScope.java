@@ -2,10 +2,10 @@ package com.mty.jls.config.datascope.strategy;
 
 
 import com.mty.jls.contract.enums.DataScopeTypeEnum;
-import com.mty.jls.rbac.domain.SysDept;
-import com.mty.jls.rbac.dto.RoleDTO;
-import com.mty.jls.rbac.service.ISysDeptService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mty.jls.rbac.api.ISysDeptService;
+import com.mty.jls.rbac.bean.IRoleDTO;
+import com.mty.jls.rbac.bean.ISysDept;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,13 +21,13 @@ import java.util.stream.Collectors;
 @Component("1")
 public class AllDataScope implements AbstractDataScopeHandler{
 
-    @Autowired
+    @Reference(version = "1.0.0")
     private ISysDeptService deptService;
 
 
     @Override
-    public List<Integer> getDeptIds(RoleDTO roleDto, DataScopeTypeEnum dataScopeTypeEnum) {
-        List<SysDept> sysDepts = deptService.list();
-        return sysDepts.stream().map(SysDept::getDeptId).collect(Collectors.toList());
+    public List<Integer> getDeptIds(IRoleDTO roleDto, DataScopeTypeEnum dataScopeTypeEnum) {
+        List<ISysDept> sysDepts = deptService.selectDeptList();
+        return sysDepts.stream().map(ISysDept::getDeptId).collect(Collectors.toList());
     }
 }

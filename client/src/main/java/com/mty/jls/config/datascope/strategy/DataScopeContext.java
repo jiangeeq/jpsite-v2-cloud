@@ -2,7 +2,7 @@ package com.mty.jls.config.datascope.strategy;
 
 
 import com.mty.jls.contract.enums.DataScopeTypeEnum;
-import com.mty.jls.rbac.dto.RoleDTO;
+import com.mty.jls.rbac.bean.IRoleDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +31,7 @@ public class DataScopeContext {
         strategyMap.forEach(this.strategyMap::put);
     }
 
-    public List<Integer> getDeptIdsForDataScope(RoleDTO roleDto, Integer type) {
+    public List<Integer> getDeptIdsForDataScope(IRoleDTO roleDto, Integer type) {
         return strategyMap.get(String.valueOf(type)).getDeptIds(roleDto, DataScopeTypeEnum.valueOf(type));
     }
 }

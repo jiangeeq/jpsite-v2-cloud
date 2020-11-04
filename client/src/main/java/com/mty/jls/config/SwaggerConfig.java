@@ -59,7 +59,7 @@ public class SwaggerConfig {
                 .groupName("RBAC权限服务")
                 .select()
                 //这里指定Controller扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("com.mty.jls.rbac"))
+                .apis(RequestHandlerSelectors.basePackage("com.mty.jls.controller.rbac"))
                 .paths(PathSelectors.any())
                 .build()
                 .securityContexts((Collections.singletonList(securityContext())))
