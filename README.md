@@ -30,3 +30,19 @@
 ![alt jpsite-cloud集成dubbo&nacos&getway架构图](http://assets.processon.com/chart_image/5fa16bd1e0b34d28c56a29d2.png)
 
 ![alt oauth2 授权中心流程](http://assets.processon.com/chart_image/5f8d4d04e401fd06fd932ec5.png)
+
+### 本地开发流程：
+首先安装相关依赖项目模块
+```
+dove-common  mvn install
+rbac-api mvn install
+```
+
+1. 启动dubbo-rbac
+2. 启动auth-server
+3. 启动client
+
+访问localhost, 登录用户名jiangpeng， 密码123456
+
+nacos地址：http://106.52.26.148:8848/nacos    
+client api doc：http://localhost/doc.html
