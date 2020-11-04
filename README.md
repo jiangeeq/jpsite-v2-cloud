@@ -46,3 +46,16 @@ rbac-api mvn install
 
 nacos地址：http://106.52.26.148:8848/nacos    
 client api doc：http://localhost/doc.html
+
+### 代码提交规范
+每次提交的代码必须保证是测试通过的， 且提交commit必须符合如下规范，便于其他开发者审阅与学习。
+
+git commit 描述使用如下形式前缀，冒号后面加空格隔开   
+fix: 、feat: 、refactor: 、     
+
+示例：
+```
+fix: 修复了字段缺失
+feat: 新增短信验证码校验
+refactor: 移除多余代码块
+```
