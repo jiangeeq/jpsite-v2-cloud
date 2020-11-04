@@ -26,5 +26,5 @@ public interface ISysLogService {
     IPageResponse<List<ISysLog>> selectLogList(Integer page, Integer pageSize, Integer type, String userName);
 
 
-
+    Boolean removeById(Integer id);
 }

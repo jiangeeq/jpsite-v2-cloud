@@ -37,4 +37,9 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> impleme
         pageResponse.setPage(sysLogPage.getCurrent()).setPageSize(sysLogPage.getSize()).setTotal(sysLogPage.getTotal()).setRecords(records);
         return pageResponse;
     }
+
+    @Override
+    public Boolean removeById(Integer id) {
+        return baseMapper.deleteById(id) > 0;
+    }
 }

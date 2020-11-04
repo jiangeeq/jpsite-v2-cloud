@@ -48,6 +48,8 @@ public class SysRole extends Model<SysRole> {
 
     @ApiModelProperty("更新时间")
     private LocalDateTime updateTime;
+    
+    private Integer tenantId;
 
     @ApiModelProperty("删除标识（0-正常,1-删除）")
     private String delFlag;

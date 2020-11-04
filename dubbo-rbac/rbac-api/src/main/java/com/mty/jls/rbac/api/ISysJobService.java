@@ -36,4 +36,11 @@ public interface ISysJobService {
 
     String selectJobNameByJobId(Integer jobId);
 
+    Boolean save(ISysJob sysJob);
+
+    Boolean removeById(Integer id);
+
+    Boolean updateById(ISysJob sysJob);
+
+
 }

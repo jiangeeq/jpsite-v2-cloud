@@ -54,4 +54,6 @@ public interface ISysDictService  {
      * @return
      */
     Boolean removeById(Integer id);
+
+    Boolean save(ISysDict dict);
 }

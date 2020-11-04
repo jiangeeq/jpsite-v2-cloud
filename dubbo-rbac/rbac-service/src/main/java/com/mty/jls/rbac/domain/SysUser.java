@@ -55,7 +55,7 @@ public class SysUser extends Model<SysUser> {
     private BigDecimal balance;
 
     @ApiModelProperty("租户id")
-    private Long tenantId;
+    private Integer tenantId;
 
     @ApiModelProperty("创建时间")
     private LocalDateTime createTime;

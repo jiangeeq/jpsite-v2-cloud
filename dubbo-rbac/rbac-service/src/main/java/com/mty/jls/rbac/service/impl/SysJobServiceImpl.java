@@ -42,7 +42,7 @@ public class SysJobServiceImpl extends ServiceImpl<SysJobMapper, SysJob> impleme
             // 按照sort排序
             List<SysJob> collect =
                     sysJobPage.getRecords().stream().peek(sysJob -> sysJob.setDeptName(deptService.selectDeptNameByDeptId(sysJob.getDeptId())))
-                    .sorted(Comparator.comparingInt(SysJob::getSort)).collect(Collectors.toList());
+                            .sorted(Comparator.comparingInt(SysJob::getSort)).collect(Collectors.toList());
             recoreds = BeanPlusUtil.copyListProperties(collect, ISysJob::new);
         }
         IPageResponse<List<ISysJob>> iPageResponse = IPageResponse.ok();
@@ -60,6 +60,21 @@ public class SysJobServiceImpl extends ServiceImpl<SysJobMapper, SysJob> impleme
     @Override
     public String selectJobNameByJobId(Integer jobId) {
         return baseMapper.selectOne(Wrappers.<SysJob>lambdaQuery().select(SysJob::getJobName).eq(SysJob::getId, jobId)).getJobName();
+    }
+
+    @Override
+    public Boolean save(ISysJob sysJob) {
+        return baseMapper.insert(BeanPlusUtil.copySingleProperties(sysJob, SysJob::new)) > 0;
+    }
+
+    @Override
+    public Boolean removeById(Integer id) {
+        return baseMapper.deleteById(id) > 0;
+    }
+
+    @Override
+    public Boolean updateById(ISysJob sysJob) {
+        return baseMapper.updateById(BeanPlusUtil.copySingleProperties(sysJob, SysJob::new)) > 0;
     }
 
 }

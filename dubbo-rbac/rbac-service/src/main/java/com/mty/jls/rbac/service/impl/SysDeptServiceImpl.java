@@ -104,6 +104,11 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impl
         return iDeptTreeVos;
     }
 
+    @Override
+    public Boolean save(ISysDept sysDept) {
+        return baseMapper.insert(BeanPlusUtil.copySingleProperties(sysDept, SysDept::new)) > 0;
+    }
+
 
     /**
      * 根据部门ID获取该部门及其下属部门树

@@ -58,5 +58,5 @@ public interface ISysDeptService  {
      */
     List<IDeptTreeVo> getDeptTree();
 
-
+    Boolean save(ISysDept sysDept);
 }

@@ -40,6 +40,7 @@ public class SysDept extends Model<SysDept> {
     @ApiModelProperty("修改时间")
     private LocalDateTime updateTime;
 
+    private Integer tenantId;
     @ApiModelProperty("是否删除  -1：已删除  0：正常")
     private String delFlag;
 

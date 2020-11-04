@@ -1,6 +1,8 @@
 package com.mty.jls.rbac.api;
 
 
+import com.dove.jls.common.bean.PageRequest;
+import com.mty.jls.rbac.bean.IPageResponse;
 import com.mty.jls.rbac.bean.ISysTenant;
 
 import java.util.List;
@@ -30,4 +32,10 @@ public interface ISysTenantService {
      * @return
      */
     List<ISysTenant> getNormalTenant();
+
+    Boolean updateById(ISysTenant sysTenant);
+
+    Boolean removeById(Integer id);
+
+    IPageResponse<List<ISysTenant>> page(PageRequest pageRequest, ISysTenant sysTenant);
 }

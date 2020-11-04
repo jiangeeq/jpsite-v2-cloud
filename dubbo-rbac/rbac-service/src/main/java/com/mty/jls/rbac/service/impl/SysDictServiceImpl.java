@@ -67,4 +67,9 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
     public Boolean removeById(Integer id) {
         return baseMapper.deleteById(id) > 0;
     }
+
+    @Override
+    public Boolean save(ISysDict dict) {
+        return baseMapper.insert(BeanPlusUtil.copySingleProperties(dict, SysDict::new)) > 0;
+    }
 }
