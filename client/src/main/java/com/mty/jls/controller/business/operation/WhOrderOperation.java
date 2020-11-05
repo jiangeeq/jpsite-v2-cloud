@@ -1,21 +1,20 @@
-package com.mty.jls.business.operation;
+package com.mty.jls.controller.business.operation;
 
 import com.dove.jls.common.utils.BeanPlusUtil;
 import com.dove.jls.common.utils.ValidateUtil;
-import com.mty.jls.business.dto.WhOrderDTO;
-import com.mty.jls.business.entity.WhAccountRecords;
-import com.mty.jls.business.entity.WhOrder;
-import com.mty.jls.business.entity.WhProduct;
-import com.mty.jls.business.enums.OperationTypeEnum;
-import com.mty.jls.business.enums.OrderStateEnum;
-import com.mty.jls.business.service.WhAccountRecordsService;
-import com.mty.jls.business.service.WhOrderService;
-import com.mty.jls.business.service.WhProductService;
 import com.mty.jls.rbac.api.ISysUserService;
 import com.mty.jls.rbac.bean.ISysUser;
+import com.mty.jls.shop.api.IWhAccountRecordsService;
+import com.mty.jls.shop.api.IWhOrderService;
+import com.mty.jls.shop.api.IWhProductService;
+import com.mty.jls.shop.bean.IWhAccountRecords;
+import com.mty.jls.shop.bean.IWhOrder;
+import com.mty.jls.shop.bean.IWhOrderDTO;
+import com.mty.jls.shop.bean.IWhProduct;
+import com.mty.jls.shop.enums.OperationTypeEnum;
+import com.mty.jls.shop.enums.OrderStateEnum;
 import com.mty.jls.utils.RbacUtil;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,19 +27,19 @@ import java.util.UUID;
  */
 @Component
 public class WhOrderOperation {
-    @Autowired
-    private WhProductService productService;
-    @Autowired
-    private WhOrderService orderService;
-    @Autowired
-    private WhAccountRecordsService accountRecordsService;
-//    @Reference(version = "1.0.0")
-//    private ISysUserService sysUserService;
+    @Reference(version = "1.0.0")
+    private IWhProductService productService;
+    @Reference(version = "1.0.0")
+    private IWhOrderService orderService;
+    @Reference(version = "1.0.0")
+    private IWhAccountRecordsService accountRecordsService;
+    @Reference(version = "1.0.0")
+    private ISysUserService sysUserService;
 
     @Transactional(rollbackFor = Exception.class)
-    public void addOrder(WhOrderDTO orderDTO) {
-        final WhProduct product = productService.getByCode(orderDTO.getProductCode());
-        final ISysUser sysUser =null; // sysUserService.findByUserInfoName(RbacUtil.getSecurityUser().getUsername());
+    public void addOrder(IWhOrderDTO orderDTO) {
+        final IWhProduct product = productService.getByCode(orderDTO.getProductCode());
+        final ISysUser sysUser = sysUserService.findByUserInfoName(RbacUtil.getSecurityUser().getUsername());
         final BigDecimal totalSalePrice = orderDTO.getTotalSalePrice();
 
         final BigDecimal realSalePrice = product.getSalePrice().multiply(BigDecimal.valueOf(orderDTO.getSaleNum()));
@@ -49,7 +48,7 @@ public class WhOrderOperation {
         ValidateUtil.validateForResponse(totalPurchasePrice.compareTo(totalSalePrice) > 0, "销售成本不匹配");
         ValidateUtil.validateForResponse(sysUser.getBalance().compareTo(totalSalePrice) < 0, "账户余额不足");
 
-        final WhOrder order = BeanPlusUtil.copySingleProperties(orderDTO, WhOrder::new, (s, t) -> {
+        final IWhOrder order = BeanPlusUtil.copySingleProperties(orderDTO, IWhOrder::new, (s, t) -> {
             var userId = RbacUtil.getSecurityUser().getUserId();
             t.setCreator(userId);
             t.setEditor(userId);
@@ -60,19 +59,19 @@ public class WhOrderOperation {
             t.setState(OrderStateEnum.PENDING.getCode());
         });
         // 新增消费记录
-        final WhAccountRecords accountRecord = buildAccountRecord(order, sysUser);
+        final IWhAccountRecords accountRecord = buildAccountRecord(order, sysUser);
         accountRecordsService.save(accountRecord);
         // 更新账户余额
         var newBalance = sysUser.getBalance().subtract(order.getTotalSalePrice());
         sysUser.setBalance(newBalance);
-//        sysUserService.updateUserInfo(BeanPlusUtil.copySingleProperties(sysUser, ISysUser::new));
+        sysUserService.updateUserInfo(BeanPlusUtil.copySingleProperties(sysUser, ISysUser::new));
         // 插入订单
         orderService.save(order);
     }
 
-    private WhAccountRecords buildAccountRecord(WhOrder order, ISysUser sysUser) {
-        final WhAccountRecords accountRecord =
-                new WhAccountRecords().setAmount(order.getTotalSalePrice()).setTradeNo(order.getNo()).setCreator(0)
+    private IWhAccountRecords buildAccountRecord(IWhOrder order, ISysUser sysUser) {
+        final IWhAccountRecords accountRecord =
+                new IWhAccountRecords().setAmount(order.getTotalSalePrice()).setTradeNo(order.getNo()).setCreator(0)
                         .setOldValue(sysUser.getBalance()).setNewValue(sysUser.getBalance().subtract(order.getTotalSalePrice()))
                         .setType(OperationTypeEnum.CONSUME.getCode()).setTenantId(RbacUtil.getSecurityUser().getTenantId()).setUserId(sysUser.getUserId());
         return accountRecord;

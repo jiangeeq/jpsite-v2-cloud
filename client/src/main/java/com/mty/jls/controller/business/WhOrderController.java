@@ -1,17 +1,17 @@
-package com.mty.jls.business.controller;
+package com.mty.jls.controller.business;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.mty.jls.business.dto.WhOrderDTO;
-import com.mty.jls.business.entity.WhOrder;
-import com.mty.jls.business.operation.WhOrderOperation;
-import com.mty.jls.business.service.WhOrderService;
+import com.dove.jls.common.bean.PageRequest;
+import com.dove.jls.common.bean.PageResponse;
 import com.mty.jls.contract.model.Response;
+import com.mty.jls.controller.business.operation.WhOrderOperation;
+import com.mty.jls.shop.api.IWhOrderService;
+import com.mty.jls.shop.bean.IWhOrder;
+import com.mty.jls.shop.bean.IWhOrderDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -32,15 +34,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/whOrder")
 public class WhOrderController {
-    @Autowired
+    @Reference(version = "1.0.0")
+    private IWhOrderService orderService;
+    @Resource
     private WhOrderOperation orderOperation;
-    @Autowired
-    private WhOrderService orderService;
-
 
     @ApiOperation("创建订单")
     @PostMapping
-    public Response addOrder(WhOrderDTO orderDTO) {
+    public Response addOrder(IWhOrderDTO orderDTO) {
         orderOperation.addOrder(orderDTO);
         return Response.succeed();
     }
@@ -48,7 +49,7 @@ public class WhOrderController {
     @ApiOperation("删除订单")
     @DeleteMapping
     public Response delete(Integer id) {
-        final WhOrder whOrder = orderService.getById(id).setDelFlag(true);
+        final IWhOrder whOrder = orderService.getById(id).setDelFlag(true);
         orderService.updateById(whOrder);
         return Response.succeed();
     }
@@ -56,30 +57,23 @@ public class WhOrderController {
     @ApiOperation("修改订单状态")
     @PutMapping("/updateState")
     public Response updateOrderState(Integer id, Integer state) {
-        final WhOrder whOrder = orderService.getById(id).setState(state);
+        final IWhOrder whOrder = orderService.getById(id).setState(state);
         orderService.updateById(whOrder);
         return Response.succeed();
     }
 
     @ApiOperation("查询订单列表（分页）")
     @GetMapping("/page")
-    public Response pageOrder(Page page, WhOrderDTO orderDTO) {
-        final LambdaQueryWrapper<WhOrder> queryWrapper = Wrappers.<WhOrder>lambdaQuery().eq(WhOrder::getProductCode, orderDTO.getProductCode())
-                .or()
-                .eq(WhOrder::getProductName, orderDTO.getProductName())
-                .or()
-                .between(WhOrder::getCreateTime, orderDTO.getMinCreateTime(), orderDTO.getMaxCreateTime())
-                .or()
-                .between(WhOrder::getTotalSalePrice, orderDTO.getMinSalePrice(), orderDTO.getMaxSalePrice());
-
-        final Page pageResult = orderService.page(page, queryWrapper);
-        return Response.succeed(pageResult);
+    public Response pageOrder(Page page, IWhOrderDTO orderDTO) {
+        final PageRequest pageRequest = new PageRequest((int) page.getCurrent(), (int) page.getSize());
+        final PageResponse pageResponse = orderService.page(pageRequest, orderDTO);
+        return Response.succeed(pageResponse);
     }
 
     @ApiOperation("查询订单详情")
     @GetMapping("/{id}")
     public Response orderInfo(@PathVariable("id") Integer id) {
-        final WhOrder order = orderService.getById(id);
+        final IWhOrder order = orderService.getById(id);
         return Response.succeed(order);
     }
 }

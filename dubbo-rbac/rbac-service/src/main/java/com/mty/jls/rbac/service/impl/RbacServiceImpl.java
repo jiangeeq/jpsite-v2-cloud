@@ -5,15 +5,18 @@ import com.mty.jls.rbac.api.ISysRoleMenuService;
 import com.mty.jls.rbac.bean.ISecurityUser;
 import com.mty.jls.rbac.domain.SysMenu;
 import com.mty.jls.rbac.mapper.SysMenuMapper;
+import org.apache.dubbo.config.annotation.Service;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component("rbacService")
+@Service(cluster = "failsafe",
+        loadbalance = "roundrobin",
+        version = "1.0.0"
+)
 public class RbacServiceImpl implements IRbacService {
     @Autowired
     private ISysRoleMenuService sysRoleMenuService;

@@ -37,7 +37,7 @@ public class SwaggerConfig {
                 .groupName("业务服务")
                 .select()
                 //这里指定Controller扫描包路径
-                .apis(RequestHandlerSelectors.basePackage("com.mty.jls.business"))
+                .apis(RequestHandlerSelectors.basePackage("com.mty.jls.controller.business"))
                 .paths(PathSelectors.any())
                 .build()
                 .securityContexts((Collections.singletonList(securityContext())))
