@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mty.jls.shop.dao.WhAccountRecordsDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mty.jls.shop.entity.WhAccountRecords">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="comment" property="comment" />
+        <result column="amount" property="amount" />
+        <result column="create_time" property="createTime" />
+        <result column="tenant_id" property="tenantId"/>
+        <result column="creator" property="creator" />
+        <result column="trade_no" property="tradeNo" />
+        <result column="new_value" property="newValue" />
+        <result column="old_value" property="oldValue" />
+        <result column="type" property="type" />
+        <result column="tenant_id" property="tenantId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, `comment`, amount, create_time, creator, trade_no, new_value, old_value, `type`, tenant_id
+    </sql>
+
+</mapper>

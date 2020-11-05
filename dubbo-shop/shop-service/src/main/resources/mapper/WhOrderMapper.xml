@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mty.jls.shop.dao.WhOrderDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mty.jls.shop.entity.WhOrder">
+        <id column="id" property="id"/>
+        <result column="no" property="no"/>
+        <result column="create_time" property="createTime"/>
+        <result column="edit_time" property="editTime"/>
+        <result column="editor" property="editor"/>
+        <result column="creator" property="creator"/>
+        <result column="product_code" property="productCode"/>
+        <result column="product_name" property="productName"/>
+        <result column="sale_num" property="saleNum"/>
+        <result column="total_purchase_price" property="totalPurchasePrice"/>
+        <result column="total_sale_price" property="totalSalePrice"/>
+        <result column="state" property="state"/>
+        <result column="distributor" property="distributor"/>
+        <result column="unit_price" property="unitPrice"/>
+        <result column="tenant_id" property="tenantId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, `no`, create_time, edit_time, editor, creator, product_code, product_name, sale_num, total_purchase_price, total_sale_price, state, distributor,
+        unit_price
+    </sql>
+
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mty.jls.shop.dao.WhProductDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mty.jls.shop.entity.WhProduct">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="sale_price" property="salePrice"/>
+        <result column="original_price" property="originalPrice"/>
+        <result column="category" property="category"/>
+        <result column="desc" property="desc"/>
+        <result column="distributor" property="distributor"/>
+        <result column="original_url" property="originalUrl"/>
+        <result column="state" property="state"/>
+        <result column="minnum_order" property="minnumOrder"/>
+        <result column="maxnum_order" property="maxnumOrder"/>
+        <result column="order_multiple" property="orderMultiple"/>
+        <result column="category_code" property="categoryCode"/>
+        <result column="create_time" property="createTime"/>
+        <result column="createor" property="createor"/>
+        <result column="edit_time" property="editTime"/>
+        <result column="editor" property="editor"/>
+        <result column="tenant_id" property="tenantId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, name, sale_price, original_price, category, desc, distributor, original_url, state, minnum_order, maxnum_order, order_multiple, category_code, create_time, createor, edit_time, editor
+    </sql>
+
+    <select id="getByCode" parameterType="string" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from wh_product where code = #{code}
+    </select>
+</mapper>
