@@ -12,6 +12,7 @@
         <module>auth-server</module>
         <module>dove-common</module>
         <module>dubbo-rbac</module>
+        <module>dubbo-shop</module>
     </modules>
     <packaging>pom</packaging>
 
