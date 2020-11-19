@@ -1,5 +1,7 @@
 ## jpsite-v2-cloud 企业级微服务快速开发解决方案
 
+### 2020年最新微服务架构版本（发布日期：2021.1.1）
+
 随着现代应用的架构演变, 微服务的概念逐渐兴起, 相关的技术栈与架构体系也日渐成熟, 本项目基于apache与alibaba的开源框架, 构建一套企业级的微服务开发快速解决方案,
 该套架构是目前2020年主流微服务开发框架, 后续有机会将改造成Service Mesh架构
 
@@ -38,7 +40,8 @@ dove-common  mvn install
 rbac-api mvn install
 ```
 
-1. 启动dubbo-rbac
+1. 启动dubbo-rbac   
+    1.2 启动dubbo-shop
 2. 启动auth-server
 3. 启动client
 
