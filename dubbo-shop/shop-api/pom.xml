@@ -25,10 +25,6 @@
             <groupId>com.dove.jls</groupId>
             <artifactId>dove-common</artifactId>
         </dependency>
-        <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-        </dependency>
         <!--swagger api doc-->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -38,6 +34,12 @@
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-spring-boot-starter</artifactId>
         </dependency>
+        <!--swagger api doc-->
+        <!--参考 https://blog.csdn.net/w57685321/article/details/106783433/-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -45,11 +47,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>14</source>
-                    <target>14</target>
-                </configuration>
             </plugin>
         </plugins>
     </build>
