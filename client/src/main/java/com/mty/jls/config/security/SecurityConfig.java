@@ -167,6 +167,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             }
                         }
                 ).and()
+                .requiresChannel()
+                // 校验转发功能对请求进行区分
+                .antMatchers("/https").requiresSecure()
+                .antMatchers("http").requiresInsecure()
+                .and()
                 // 用新的登录踢掉旧的登录，我们只需要将最大会话数设置为 1
                 .sessionManagement()
                 .maximumSessions(1)
