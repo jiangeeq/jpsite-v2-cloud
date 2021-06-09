@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/job")
 public class SysJobController {
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysJobService jobService;
 
     @ApiOperation(value = "获取岗位列表")

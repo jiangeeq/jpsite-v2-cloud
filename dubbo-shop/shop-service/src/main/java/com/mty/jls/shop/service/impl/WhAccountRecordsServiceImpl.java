@@ -28,6 +28,7 @@ import java.util.List;
  */
 @Service(cluster = "failsafe",
         loadbalance = "roundrobin",
+        group = "shop",
         version = "1.0.0"
 )
 public class WhAccountRecordsServiceImpl extends ServiceImpl<WhAccountRecordsDao, WhAccountRecords> implements IWhAccountRecordsService {

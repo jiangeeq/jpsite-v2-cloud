@@ -34,7 +34,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/whOrder")
 public class WhOrderController {
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "shop")
     private IWhOrderService orderService;
     @Resource
     private WhOrderOperation orderOperation;

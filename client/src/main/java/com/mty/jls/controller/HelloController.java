@@ -19,7 +19,7 @@ import java.util.List;
  */
 @RestController
 public class HelloController {
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysDeptService iSysDeptService;
 
     @GetMapping("/deptList")

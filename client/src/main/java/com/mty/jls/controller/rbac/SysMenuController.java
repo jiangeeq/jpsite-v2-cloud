@@ -28,7 +28,7 @@ import java.util.List;
 @RequestMapping("/menu")
 public class SysMenuController {
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysMenuService menuService;
 
     @PostMapping

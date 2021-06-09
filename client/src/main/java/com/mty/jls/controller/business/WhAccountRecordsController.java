@@ -30,7 +30,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/whAccountRecords")
 public class WhAccountRecordsController {
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "shop")
     private IWhAccountRecordsService accountRecordsService;
 
     @ApiOperation("查询单个消费记录")

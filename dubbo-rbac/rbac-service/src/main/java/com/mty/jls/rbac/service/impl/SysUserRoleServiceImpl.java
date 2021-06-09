@@ -21,6 +21,7 @@ import java.util.List;
  */
 @Service(cluster = "failsafe",
         loadbalance = "roundrobin",
+        group = "rbac",
         version = "1.0.0"
 )
 public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleMapper, SysUserRole> implements ISysUserRoleService {

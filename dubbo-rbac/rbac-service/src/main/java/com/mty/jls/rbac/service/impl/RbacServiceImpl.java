@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Service(cluster = "failsafe",
         loadbalance = "roundrobin",
+        group = "rbac",
         version = "1.0.0"
 )
 public class RbacServiceImpl implements IRbacService {

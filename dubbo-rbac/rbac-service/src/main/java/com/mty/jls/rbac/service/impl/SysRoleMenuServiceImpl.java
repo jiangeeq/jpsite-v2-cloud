@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service(cluster = "failsafe",
         loadbalance = "roundrobin",
+        group = "rbac",
         version = "1.0.0"
 )
 public class SysRoleMenuServiceImpl extends ServiceImpl<SysRoleMenuMapper, SysRoleMenu> implements ISysRoleMenuService {

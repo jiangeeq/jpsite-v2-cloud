@@ -27,7 +27,7 @@ import java.util.Objects;
 @Slf4j
 @EnableAsync
 public class RbacUserDetailsService implements UserDetailsService {
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysUserService sysUserService;
 
 

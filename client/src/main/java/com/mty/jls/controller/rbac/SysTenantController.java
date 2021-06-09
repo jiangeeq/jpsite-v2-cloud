@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/tenant")
 public class SysTenantController {
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysTenantService sysTenantService;
 
     @GetMapping("/page")

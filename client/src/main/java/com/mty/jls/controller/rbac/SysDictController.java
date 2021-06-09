@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/dict")
 public class SysDictController {
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysDictService dictService;
 
     @ApiOperation(value = "保存字典信息")

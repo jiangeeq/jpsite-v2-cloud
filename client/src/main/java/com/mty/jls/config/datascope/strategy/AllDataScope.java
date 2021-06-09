@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Component("1")
 public class AllDataScope implements AbstractDataScopeHandler{
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysDeptService deptService;
 
 

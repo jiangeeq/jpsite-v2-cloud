@@ -27,13 +27,13 @@ import java.util.UUID;
  */
 @Component
 public class WhOrderOperation {
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "shop")
     private IWhProductService productService;
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "shop")
     private IWhOrderService orderService;
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "shop")
     private IWhAccountRecordsService accountRecordsService;
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysUserService sysUserService;
 
     @Transactional(rollbackFor = Exception.class)

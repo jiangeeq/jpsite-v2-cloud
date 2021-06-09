@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/dept")
 public class SysDeptController {
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysDeptService deptService;
 
     @ApiOperation(value = "保存部门信息")

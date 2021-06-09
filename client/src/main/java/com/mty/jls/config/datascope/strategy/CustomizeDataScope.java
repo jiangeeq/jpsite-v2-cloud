@@ -22,7 +22,7 @@ import java.util.Set;
 @Component("4")
 public class CustomizeDataScope implements AbstractDataScopeHandler {
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysDeptService deptService;
 
     @Override

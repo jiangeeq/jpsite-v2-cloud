@@ -21,7 +21,7 @@ import java.util.Map;
  */
 @RestController
 public class HelloController {
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysUserService sysUserService;
 
     @GetMapping("/hello")

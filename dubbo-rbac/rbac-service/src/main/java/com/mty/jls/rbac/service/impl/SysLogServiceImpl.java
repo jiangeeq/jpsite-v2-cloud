@@ -18,6 +18,7 @@ import java.util.List;
 
 @Service(cluster = "failsafe",
         loadbalance = "roundrobin",
+        group = "rbac",
         version = "1.0.0"
 )
 public class SysLogServiceImpl extends ServiceImpl<SysLogMapper, SysLog> implements ISysLogService {

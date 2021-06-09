@@ -21,10 +21,10 @@ import java.util.List;
 @Component("3")
 public class ThisLevelChildenDataScope implements AbstractDataScopeHandler {
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0",group = "rbac")
     private ISysUserService userService;
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysDeptService deptService;
 
 

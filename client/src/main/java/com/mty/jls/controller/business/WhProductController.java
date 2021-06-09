@@ -38,7 +38,7 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/whProduct")
 public class WhProductController {
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "shop")
     private IWhProductService productService;
 
     @ApiOperation("新增商品")

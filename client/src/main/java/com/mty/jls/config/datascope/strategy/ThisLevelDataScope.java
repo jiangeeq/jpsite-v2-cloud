@@ -22,7 +22,7 @@ import java.util.List;
 @Component("2")
 public class ThisLevelDataScope implements AbstractDataScopeHandler {
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysUserService userService;
 
     @Override

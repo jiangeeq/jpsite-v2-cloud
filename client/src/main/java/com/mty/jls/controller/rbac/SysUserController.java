@@ -36,7 +36,7 @@ import java.util.Objects;
 @RequestMapping("/user")
 public class SysUserController {
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysUserService userService;
     @Autowired
     private ValidateCodeProcessor smsValidateCodeProcessor;

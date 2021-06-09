@@ -38,7 +38,7 @@ import javax.validation.Valid;
 @Api(value = "主页管理", tags = "主页管理")
 @RestController
 public class IndexController {
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysUserService userService;
     @Autowired
     private ValidateCodeGenerator smsValidateCodeGenerator;

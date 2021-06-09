@@ -26,6 +26,7 @@ import java.util.List;
  */
 @Service(cluster = "failsafe",
         loadbalance = "roundrobin",
+        group = "shop",
         version = "1.0.0"
 )
 public class WhOrderServiceImpl extends ServiceImpl<WhOrderDao, WhOrder> implements IWhOrderService {

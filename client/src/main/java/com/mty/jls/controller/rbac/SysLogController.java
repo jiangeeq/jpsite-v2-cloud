@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 @RequestMapping("/log")
 public class SysLogController {
 
-    @Reference(version = "1.0.0")
+    @Reference(version = "1.0.0", group = "rbac")
     private ISysLogService logService;
 
     @ApiOperation(value = "分页查询日志列表")
