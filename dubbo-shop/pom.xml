@@ -10,6 +10,7 @@
 
     <modules>
         <module>shop-api</module>
+        <module>shop-dao</module>
         <module>shop-service</module>
     </modules>
     <packaging>pom</packaging>

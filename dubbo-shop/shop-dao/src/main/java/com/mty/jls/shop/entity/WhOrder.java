@@ -26,9 +26,9 @@ public class WhOrder extends Model<WhOrder> {
 
     private static final long serialVersionUID = 1L;
 
-      private Integer id;
+    private Integer id;
 
-      private String no;
+    private String no;
     /**
      * 创建时间
      */
@@ -90,6 +90,8 @@ public class WhOrder extends Model<WhOrder> {
     private BigDecimal unitPrice;
 
     private Boolean delFlag;
+
+    private String tenantId;
 
 
     @Override

@@ -26,7 +26,7 @@ public class WhAccountRecords extends Model<WhAccountRecords> {
 
     private static final long serialVersionUID = 1L;
 
-      private Integer id;
+    private Integer id;
 
     /**
      * 用户id

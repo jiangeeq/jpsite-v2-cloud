@@ -21,78 +21,78 @@ import java.time.LocalDateTime;
  * @since 2020-10-11
  */
 @Data
-  @EqualsAndHashCode(callSuper = false)
-    @Accessors(chain = true)
-  @TableName("wh_product")
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@TableName("wh_product")
 public class WhProduct extends Model<WhProduct> {
 
     private static final long serialVersionUID = 1L;
 
-      /**
+    /**
      * id
      */
-        @TableId(value = "id", type = IdType.AUTO)
-      private Integer id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
-      /**
+    /**
      * 商品编码
      */
-      private String code;
+    private String code;
 
-      /**
+    /**
      * 商品名称
      */
-      private String name;
+    private String name;
 
-      /**
+    /**
      * 销售价
      */
-      private BigDecimal salePrice;
+    private BigDecimal salePrice;
 
-      /**
+    /**
      * 原价
      */
-      private BigDecimal originalPrice;
+    private BigDecimal originalPrice;
 
-      /**
+    /**
      * 分类
      */
-      private String category;
+    private String category;
 
-      /**
+    /**
      * 详细描述
      */
-      private String description;
+    private String description;
 
-      /**
+    /**
      * 批发商
      */
-      private String distributor;
+    private String distributor;
 
-      /**
+    /**
      * 原始地址
      */
-      private String originalUrl;
+    private String originalUrl;
 
-      /**
+    /**
      * 状态
      */
-      private Integer state;
+    private Integer state;
 
-      /**
+    /**
      * 最小下单数量范围
      */
-      private String minnumOrder;
+    private String minnumOrder;
 
-      /**
+    /**
      * 最大下单数量范围
      */
-      private String maxnumOrder;
+    private String maxnumOrder;
 
-      /**
+    /**
      * 下单倍数，如果为空或为0则没有下单倍数限制
      */
-      private String orderMultiple;
+    private String orderMultiple;
 
     private String categoryCode;
 
@@ -103,12 +103,12 @@ public class WhProduct extends Model<WhProduct> {
     private LocalDateTime editTime;
 
     private Integer editor;
-
+    private String desc;
     private String tenantId;
 
     @Override
     protected Serializable pkVal() {
-          return this.id;
-      }
+        return this.id;
+    }
 
 }

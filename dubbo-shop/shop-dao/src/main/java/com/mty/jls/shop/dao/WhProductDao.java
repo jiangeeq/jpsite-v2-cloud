@@ -15,6 +15,7 @@ import com.mty.jls.shop.entity.WhProduct;
 public interface WhProductDao extends BaseMapper<WhProduct> {
     /**
      * 根据商品编码获取商品信息
+     *
      * @param code
      * @return
      */
