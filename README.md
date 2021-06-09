@@ -8,17 +8,10 @@
 ### 技术栈：
 |相关技术|版本|
 |---|---|
-|kubernetes|xxx|
-|docker|xxx|
-|sentinel|xxx|
-|seata|xxx|
-|nacos|xxx|
+|nacos|1.3.2|
 |dubbo|3.0.0|
-|RocketMQ|xxx|
-|skywalking|xxx|
-|Prometheus|xxx|
-|jdk |14|
-|elasticSearch|xxx|
+|jdk |15|
+|elasticSearch|7.6|
 |spring-security|  5.3.4.RELEASE|
 |spring   |    5.2.9.RELEASE|
 |spring-boot  |  2.3.4.RELEASE|
@@ -28,6 +21,13 @@
 |knife4j  |            2.0.4|
 |lombok  |        1.18.2|
 |lettuce  |  5.3.4.RELEASE|
+|RocketMQ|xxx|
+|skywalking|xxx|
+|Prometheus|xxx|
+|kubernetes|xxx|
+|docker|xxx|
+|sentinel|xxx|
+|seata|xxx|
 
 ![alt jpsite-cloud集成dubbo&nacos&getway架构图](http://assets.processon.com/chart_image/5fa16bd1e0b34d28c56a29d2.png)
 
