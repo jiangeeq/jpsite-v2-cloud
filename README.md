@@ -34,9 +34,9 @@
 ### 未来计划：
 **关于技术栈替换**
 |原技术|未来技术|
-|---|---|
-|spring-mvc | spring-webFlux|一个采用响应式堆的 Web 框架|
-|lettuce | redission | 一个高级的分布式协调 Redis 客户端|
+|---|---|---|
+|spring-mvc | spring-webFlux|一个采用响应式堆的 Web 框架 |
+|lettuce | redission | 一个高级的分布式协调 Redis 客户端 |
 
 ![alt jpsite-cloud集成dubbo&nacos&getway架构图](http://assets.processon.com/chart_image/5fa16bd1e0b34d28c56a29d2.png)
 
