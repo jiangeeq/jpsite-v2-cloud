@@ -21,6 +21,7 @@
 |knife4j  |            2.0.4|
 |lombok  |        1.18.2|
 |lettuce  |  5.3.4.RELEASE|
+|spring-cloud-gateway| 3.0.3|
 |RocketMQ|xxx|
 |skywalking|xxx|
 |Prometheus|xxx|
