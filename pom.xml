@@ -13,6 +13,8 @@
         <module>dove-common</module>
         <module>dubbo-rbac</module>
         <module>dubbo-shop</module>
+        <module>microcloud-gateway</module>
+        <module>monitor-server</module>
     </modules>
     <packaging>pom</packaging>
 
